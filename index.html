@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>For My Maharani • 12.09</title>
+  <title>Ishika • Royal Archive</title>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #ff2a6d;
-      --gold: #dfb15b;
-      --gold-light: #fbe5a7;
-      --bg: #07070b;
-      --glass: rgba(18, 18, 26, 0.82);
-      --border: rgba(223, 177, 91, 0.25);
+      --gold-primary: #f6d365;
+      --gold-secondary: #fda085;
+      --gold-glow: rgba(246, 211, 101, 0.4);
+      --glass-panel: rgba(14, 12, 22, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.12);
     }
     * {
       box-sizing: border-box;
@@ -22,7 +21,7 @@
       -webkit-tap-highlight-color: transparent;
     }
     body {
-      background: var(--bg);
+      background: #030206;
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -31,408 +30,492 @@
       padding: 16px;
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
+      position: relative;
     }
-    #canvasSpace {
+    /* Dynamic Cyber-Aurora Mesh Background */
+    .aurora-bg {
       position: fixed;
       inset: 0;
-      width: 100vw;
-      height: 100vh;
       z-index: 1;
       pointer-events: none;
+      overflow: hidden;
     }
-    .app-container {
+    .blob {
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.45;
+      animation: floatMesh 16s ease-in-out infinite alternate;
+    }
+    .blob-1 {
+      top: -10%;
+      left: -15%;
+      background: radial-gradient(circle, #ff2a6d, transparent 70%);
+    }
+    .blob-2 {
+      bottom: -15%;
+      right: -10%;
+      background: radial-gradient(circle, #dfb15b, transparent 70%);
+      animation-duration: 20s;
+    }
+    .blob-3 {
+      top: 40%;
+      left: 30%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, #7928ca, transparent 70%);
+      animation-duration: 24s;
+    }
+    @keyframes floatMesh {
+      0% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(60px, 80px) scale(1.15); }
+      100% { transform: translate(-40px, 50px) scale(0.9); }
+    }
+    #particleSpace {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Glassmorphism Card Container */
+    .hub-container {
       width: 100%;
       max-width: 420px;
       position: relative;
-      z-index: 2;
+      z-index: 10;
     }
-    .stage-card {
-      background: var(--glass);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 32px 24px;
+    .cinema-card {
+      background: var(--glass-panel);
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      border: 1px solid var(--glass-border);
+      border-radius: 36px;
+      padding: 36px 26px;
       text-align: center;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.85), 0 0 30px rgba(223, 177, 91, 0.08);
-      position: relative;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95), inset 0 1px 1px rgba(255, 255, 255, 0.2);
       display: none;
-      animation: zoomIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: scale(0.94);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .stage-card.active { display: block; }
-    @keyframes zoomIn {
-      from { opacity: 0; transform: scale(0.92) translateY(10px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    
-    .royal-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: var(--gold-light);
-      background: rgba(223, 177, 91, 0.12);
-      border: 1px solid rgba(223, 177, 91, 0.3);
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      margin-bottom: 8px;
-      color: #fff;
-    }
-    p.subtext {
-      font-size: 13.5px;
-      color: #a0a0b2;
-      margin-bottom: 24px;
-      line-height: 1.5;
+    .cinema-card.active {
+      display: block;
+      transform: scale(1);
+      opacity: 1;
     }
 
-    /* Screen 1: Pin Pad */
-    .dots-row {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
+    .badge-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      background: rgba(246, 211, 101, 0.08);
+      border: 1px solid rgba(246, 211, 101, 0.25);
+      padding: 7px 16px;
+      border-radius: 999px;
+      margin-bottom: 22px;
+      box-shadow: 0 0 20px rgba(246, 211, 101, 0.1);
+    }
+    .pulse-optic {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      box-shadow: 0 0 10px var(--gold-primary);
+      animation: opticPing 1.8s infinite;
+    }
+    @keyframes opticPing {
+      0%, 100% { opacity: 0.3; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 30%, #ffd1b3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+    p.card-desc {
+      font-size: 13.5px;
+      color: #9b9ab2;
+      line-height: 1.6;
       margin-bottom: 26px;
     }
-    .p-dot {
+
+    /* Screen 1: Futuristic Pin Pad */
+    .nodes-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .p-node {
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      border: 1.5px solid var(--gold);
-      transition: 0.25s;
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .p-dot.active {
-      background: var(--gold);
-      box-shadow: 0 0 15px var(--gold);
-      transform: scale(1.15);
+    .p-node.filled {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 18px var(--gold-primary);
+      transform: scale(1.25);
     }
-    .pad-grid {
+    .grid-matrix {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       max-width: 270px;
       margin: 0 auto;
     }
-    .pad-btn {
+    .grid-key {
       aspect-ratio: 1.25;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 18px;
       color: #fff;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 600;
-      border-radius: 16px;
-      cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all 0.15s;
+      cursor: pointer;
       user-select: none;
+      transition: all 0.2s;
     }
-    .pad-btn:active {
-      background: var(--gold);
+    .grid-key:active {
+      background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
       color: #000;
       transform: scale(0.92);
+      box-shadow: 0 0 25px rgba(246, 211, 101, 0.5);
     }
-    .status-msg {
+    .feedback-line {
       color: #ff453a;
       font-size: 12.5px;
       min-height: 18px;
-      margin-top: 14px;
-      font-weight: 500;
+      margin-top: 15px;
+      letter-spacing: 0.5px;
     }
 
-    /* Screen 2: Cake */
-    .cake-box {
+    /* Screen 2: Holographic Cake & Candle */
+    .cake-core {
       margin: 30px auto;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       flex-direction: column;
       align-items: center;
     }
-    .cake-base {
-      width: 160px;
-      height: 75px;
-      background: linear-gradient(180deg, #ff4d6d, #800f2f);
+    .cake-stand {
+      width: 170px;
+      height: 85px;
+      background: linear-gradient(180deg, #ff2a6d 0%, #70062a 100%);
       border-radius: 50% / 30%;
       position: relative;
-      box-shadow: 0 12px 30px rgba(255, 77, 109, 0.35);
+      box-shadow: 0 15px 40px rgba(255, 42, 109, 0.4);
     }
-    .cake-cream {
-      width: 160px;
-      height: 42px;
-      background: linear-gradient(180deg, #fff5f7, #ffd1dc);
+    .cake-glaze {
+      width: 170px;
+      height: 48px;
+      background: linear-gradient(180deg, #ffffff 0%, #ffd6e0 100%);
       border-radius: 50% / 40%;
       position: absolute;
-      top: -16px;
+      top: -18px;
+      box-shadow: inset 0 -3px 10px rgba(0,0,0,0.1);
     }
-    .candle {
-      width: 10px;
-      height: 44px;
-      background: repeating-linear-gradient(45deg, var(--gold), var(--gold) 5px, #fff 5px, #fff 10px);
-      border-radius: 5px;
+    .candle-pillar {
+      width: 12px;
+      height: 48px;
+      background: repeating-linear-gradient(45deg, var(--gold-primary), var(--gold-primary) 6px, #fff 6px, #fff 12px);
+      border-radius: 6px;
       position: absolute;
-      top: -46px;
-      left: calc(50% - 5px);
+      top: -50px;
+      left: calc(50% - 6px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
     }
-    .flame {
-      width: 14px;
-      height: 22px;
-      background: radial-gradient(circle, #fff, #ffd600, #ff3d00);
+    .candle-glow {
+      width: 16px;
+      height: 26px;
+      background: radial-gradient(circle, #fff, #ffd600 50%, #ff4500 100%);
       border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
       position: absolute;
-      top: -22px;
+      top: -26px;
       left: -2px;
-      box-shadow: 0 0 18px #ffd600, 0 0 35px #ff3d00;
-      animation: flick 0.12s infinite alternate;
-      transition: all 0.3s ease;
+      box-shadow: 0 0 20px #ffd600, 0 0 45px #ff5722;
+      animation: flameWiggle 0.12s infinite alternate ease-in-out;
+      transition: all 0.35s ease;
     }
-    @keyframes flick {
+    @keyframes flameWiggle {
       0% { transform: scale(1) rotate(-1.5deg); }
       100% { transform: scale(1.08) rotate(1.5deg); }
     }
-    .flame.off {
+    .candle-glow.extinguished {
       transform: scale(0);
       opacity: 0;
     }
-    .tap-hint {
-      margin-top: 30px;
+    .guide-cue {
+      margin-top: 32px;
       font-size: 13px;
-      letter-spacing: 1px;
-      color: var(--gold-light);
       font-weight: 600;
-      animation: pulseText 1.6s infinite;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      animation: guidePulse 1.8s infinite;
     }
-    @keyframes pulseText {
-      0%, 100% { opacity: 0.5; }
+    @keyframes guidePulse {
+      0%, 100% { opacity: 0.4; }
       50% { opacity: 1; }
     }
 
-    /* Screen 3 & 4: Interactive Quizzes */
-    .btn-col {
+    /* Screen 3 & 4: Interactive Quiz Flow */
+    .button-stack {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 20px;
+      gap: 14px;
+      margin-top: 24px;
     }
-    .interactive-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(223, 177, 91, 0.25);
+    .choice-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: #fff;
       font-size: 15px;
       font-weight: 600;
-      padding: 16px 18px;
-      border-radius: 18px;
+      padding: 17px 20px;
+      border-radius: 20px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       outline: none;
     }
-    .interactive-btn:active {
+    .choice-btn:active {
       transform: scale(0.96);
-      background: rgba(223, 177, 91, 0.18);
+      background: rgba(246, 211, 101, 0.15);
+      border-color: var(--gold-primary);
     }
-    .shake-anim {
-      animation: shake 0.4s ease;
+    .shake-target {
+      animation: shakeFeedback 0.4s ease;
     }
-    @keyframes shake {
+    @keyframes shakeFeedback {
       0%, 100% { transform: translateX(0); }
       20%, 60% { transform: translateX(-8px); }
       40%, 80% { transform: translateX(8px); }
     }
 
-    /* Screen 5: Royal Letter (Ultra-Premium Paper Look) */
-    .royal-scroll {
-      background: linear-gradient(135deg, #1b1612 0%, #120f0d 100%);
-      border: 1.5px solid var(--gold);
-      border-radius: 24px;
-      padding: 26px 20px;
+    /* Screen 5 & 6: Royal Sealed Scroll */
+    .scroll-frame {
+      background: linear-gradient(145deg, #15121c 0%, #0a0810 100%);
+      border: 1.5px solid rgba(246, 211, 101, 0.4);
+      border-radius: 26px;
+      padding: 30px 22px;
       text-align: left;
-      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0, 0, 0, 0.7);
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.9), 0 20px 50px rgba(0, 0, 0, 0.8);
       position: relative;
     }
-    .wax-seal {
-      width: 48px;
-      height: 48px;
-      background: radial-gradient(circle, #b71c1c, #5f0909);
+    .wax-emblem {
+      width: 54px;
+      height: 54px;
+      background: radial-gradient(circle, #c41c38 0%, #590815 100%);
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Cinzel', serif;
-      font-weight: 700;
+      font-weight: 900;
       color: #ffd700;
-      font-size: 18px;
-      margin: 0 auto 16px auto;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.6), inset 0 0 5px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255, 215, 0, 0.4);
-    }
-    .letter-header {
-      font-family: 'Playfair Display', serif;
       font-size: 22px;
-      color: var(--gold-light);
+      margin: 0 auto 18px auto;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.7), inset 0 0 6px rgba(255, 215, 0, 0.4);
+      border: 1px solid rgba(255, 215, 0, 0.5);
+    }
+    .scroll-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--gold-primary);
       text-align: center;
       margin-bottom: 4px;
     }
-    .letter-date {
+    .scroll-timestamp {
       font-family: 'Cinzel', serif;
       font-size: 11px;
       letter-spacing: 2px;
-      color: #9f8a65;
+      color: #9284a0;
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 24px;
     }
-    .letter-body {
+    .scroll-content {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 14.5px;
-      line-height: 1.8;
-      color: #ebd9c5;
+      line-height: 1.85;
+      color: #e6e0ee;
       white-space: pre-line;
-      animation: letterFade 1.2s ease forwards;
+      animation: textBloom 1.2s ease forwards;
     }
-    @keyframes letterFade {
-      from { opacity: 0; transform: translateY(10px); }
+    @keyframes textBloom {
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .special-mark {
-      color: var(--gold-light);
+    .highlight-phrase {
+      color: var(--gold-primary);
       font-weight: 700;
     }
-    .letter-footer {
-      margin-top: 24px;
+    .scroll-signature {
+      margin-top: 26px;
       text-align: right;
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      color: var(--gold);
-      font-size: 15px;
+      color: var(--gold-primary);
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
 
-  <canvas id="canvasSpace"></canvas>
-  <audio id="bgTrack" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-112199.mp3"></audio>
+  <!-- Dynamic Cyber Aurora Mesh -->
+  <div class="aurora-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
 
-  <div class="app-container">
+  <canvas id="particleSpace"></canvas>
+  <audio id="soundtrack" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-112199.mp3"></audio>
 
-    <!-- Screen 1: Passcode -->
-    <div id="stepPin" class="stage-card active">
-      <div class="royal-badge">Confidential Gateway</div>
-      <h2>Identity Check</h2>
-      <p class="subtext">Enter the royal date passcode (DDMM)</p>
+  <div class="hub-container">
 
-      <div class="dots-row">
-        <div class="p-dot" id="dot0"></div>
-        <div class="p-dot" id="dot1"></div>
-        <div class="p-dot" id="dot2"></div>
-        <div class="p-dot" id="dot3"></div>
+    <!-- Step 1: Security Handshake (Pin) -->
+    <div id="panelPin" class="cinema-card active">
+      <div class="badge-capsule">
+        <div class="pulse-optic"></div> Protected Transmission
+      </div>
+      <h2>Identity Verification</h2>
+      <p class="card-desc">Enter your exclusive date passcode (DDMM)</p>
+
+      <div class="nodes-wrap">
+        <div class="p-node" id="n0"></div>
+        <div class="p-node" id="n1"></div>
+        <div class="p-node" id="n2"></div>
+        <div class="p-node" id="n3"></div>
       </div>
 
-      <div class="pad-grid">
-        <div class="pad-btn" onclick="dialKey('1')">1</div>
-        <div class="pad-btn" onclick="dialKey('2')">2</div>
-        <div class="pad-btn" onclick="dialKey('3')">3</div>
-        <div class="pad-btn" onclick="dialKey('4')">4</div>
-        <div class="pad-btn" onclick="dialKey('5')">5</div>
-        <div class="pad-btn" onclick="dialKey('6')">6</div>
-        <div class="pad-btn" onclick="dialKey('7')">7</div>
-        <div class="pad-btn" onclick="dialKey('8')">8</div>
-        <div class="pad-btn" onclick="dialKey('9')">9</div>
-        <div class="pad-btn" onclick="clearPin()">✕</div>
-        <div class="pad-btn" onclick="dialKey('0')">0</div>
-        <div class="pad-btn" onclick="verifyPin()">✓</div>
+      <div class="grid-matrix">
+        <div class="grid-key" onclick="enterDigit('1')">1</div>
+        <div class="grid-key" onclick="enterDigit('2')">2</div>
+        <div class="grid-key" onclick="enterDigit('3')">3</div>
+        <div class="grid-key" onclick="enterDigit('4')">4</div>
+        <div class="grid-key" onclick="enterDigit('5')">5</div>
+        <div class="grid-key" onclick="enterDigit('6')">6</div>
+        <div class="grid-key" onclick="enterDigit('7')">7</div>
+        <div class="grid-key" onclick="enterDigit('8')">8</div>
+        <div class="grid-key" onclick="enterDigit('9')">9</div>
+        <div class="grid-key" onclick="clearCode()">✕</div>
+        <div class="grid-key" onclick="enterDigit('0')">0</div>
+        <div class="grid-key" onclick="testCode()">✓</div>
       </div>
-      <div class="status-msg" id="pinError"></div>
+      <div class="feedback-line" id="pinError"></div>
     </div>
 
-    <!-- Screen 2: Candle Cake -->
-    <div id="stepCake" class="stage-card">
-      <div class="royal-badge">Birthday Ritual</div>
+    <!-- Step 2: Candle Flame Ceremony -->
+    <div id="panelCake" class="cinema-card">
+      <div class="badge-capsule">
+        <div class="pulse-optic"></div> Birthday Protocol
+      </div>
       <h2>Make A Silent Wish</h2>
-      <p class="subtext">Blow the candle to initiate the surprises</p>
+      <p class="card-desc">Blow out the holographic candle to unlock memory archives</p>
 
-      <div class="cake-box" onclick="blowCandle()">
-        <div class="candle">
-          <div class="flame" id="cakeFlame"></div>
+      <div class="cake-core" onclick="extinguishCandle()">
+        <div class="candle-pillar">
+          <div class="candle-glow" id="candleGlow"></div>
         </div>
-        <div class="cake-cream"></div>
-        <div class="cake-base"></div>
-        <div class="tap-hint" id="hintCake">Tap The Candle To Blow ✨</div>
+        <div class="cake-glaze"></div>
+        <div class="cake-stand"></div>
+        <div class="guide-cue" id="cakeHint">Tap The Flame To Blow ✨</div>
       </div>
     </div>
 
-    <!-- Screen 3: Question 1 -->
-    <div id="stepQ1" class="stage-card">
-      <div class="royal-badge">Pop Quiz • Round 1</div>
+    <!-- Step 3: Interactive Question 1 -->
+    <div id="panelQ1" class="cinema-card">
+      <div class="badge-capsule">
+        <div class="pulse-optic"></div> Royal Inquiry • 01
+      </div>
       <h2>How are you? ❤️</h2>
-      <p class="subtext">Acha yeh batao... aaj kya hai?</p>
+      <p class="card-desc">Acha yeh batao... aaj kya hai?</p>
 
-      <div class="btn-col">
-        <button class="interactive-btn" onclick="wrongOption(this, 'Arre sirf maharani nahi! Galat jawab 😤')">
+      <div class="button-stack">
+        <button class="choice-btn" onclick="invalidChoice(this, 'Arre sirf maharani nahi! Galat jawab 😤')">
           Maharani ka birthday 👑
         </button>
-        <button class="interactive-btn" onclick="nextQuestion()">
+        <button class="choice-btn" onclick="advanceToQ2()">
           Aak ki maharani ka birthday 🧿✨
         </button>
       </div>
-      <div class="status-msg" id="q1Error"></div>
+      <div class="feedback-line" id="q1Hint"></div>
     </div>
 
-    <!-- Screen 4: Question 2 -->
-    <div id="stepQ2" class="stage-card">
-      <div class="royal-badge">Strict Inquiry • Round 2</div>
+    <!-- Step 4: Interactive Question 2 -->
+    <div id="panelQ2" class="cinema-card">
+      <div class="badge-capsule">
+        <div class="pulse-optic"></div> Final Inquiry • 02
+      </div>
       <h2>Sach Sach Batana!</h2>
-      <p class="subtext">Aap meri babu ho ya nahi? 😼</p>
+      <p class="card-desc">Aap meri babu ho ya nahi? 😼</p>
 
-      <div class="btn-col">
-        <button class="interactive-btn" onclick="wrongOption(this, 'Wrong answer! Sirf aur sirf meri babu ho tum 🔪😭')">
+      <div class="button-stack">
+        <button class="choice-btn" onclick="invalidChoice(this, 'Wrong answer! Sirf aur sirf meri babu ho tum 🔪😭')">
           Nahi 🙅🏻‍♀️
         </button>
-        <button class="interactive-btn" onclick="correctBabu()">
+        <button class="choice-btn" onclick="advanceToPledge()">
           Haan, strictly aur humesha sirf aapki babu ❤️🥺
         </button>
       </div>
-      <div class="status-msg" id="q2Error"></div>
+      <div class="feedback-line" id="q2Hint"></div>
     </div>
 
-    <!-- Screen 5: Love Transition -->
-    <div id="stepTrans" class="stage-card">
-      <div class="royal-badge">A Promise</div>
+    <!-- Step 5: Love Pledge Transition -->
+    <div id="panelPledge" class="cinema-card">
+      <div class="badge-capsule">
+        <div class="pulse-optic"></div> A Living Promise
+      </div>
       <h2>I Love You So Much Baby ❤️</h2>
-      <p class="subtext" style="font-size: 15px; color: #dfb15b; line-height: 1.7; margin-top: 15px;">
-        I really hope you enjoy this exclusive little world made just for you... Now, unlocking your special letter.
+      <p class="card-desc" style="font-size: 15px; color: var(--gold-primary); line-height: 1.7; margin-top: 16px;">
+        I really hope you enjoy this exclusive little world made just for you... Now, unlocking your permanent sealed letter.
       </p>
-      <button class="interactive-btn" style="margin-top: 20px; border-color: var(--gold);" onclick="openFinalLetter()">
+      <button class="choice-btn" style="margin-top: 20px; border-color: var(--gold-primary);" onclick="revealLetter()">
         Open Sealed Letter 📜✨
       </button>
     </div>
 
-    <!-- Screen 6: Premium Royal Letter -->
-    <div id="stepLetter" class="stage-card">
-      <div class="royal-scroll">
-        <div class="wax-seal">I</div>
-        <div class="letter-header">Happy Birthday, Ishika ❤️</div>
-        <div class="letter-date">12TH SEPTEMBER • ETERNITY</div>
+    <!-- Step 6: Royal Golden Scroll Archive -->
+    <div id="panelLetter" class="cinema-card">
+      <div class="scroll-frame">
+        <div class="wax-emblem">I</div>
+        <div class="scroll-title">Happy Birthday, Ishika ❤️</div>
+        <div class="scroll-timestamp">12TH SEPTEMBER • ETERNITY</div>
 
-        <div class="letter-body">
+        <div class="scroll-content">
 Happy Birthday to the most irreplaceable person in my entire life! 🥺❤️
 
 Whatever is going on in my world, you are the only one who truly understands me without me needing to explain a single thing. That proposal night is forever locked in my heart, and words will never be enough to describe how precious you are to me 🔒✨.
 
 It’s only been 1 month today, but time will just fly by—kab 1 saal aur kab 10 saal honge pata bhi nahi chalega, and we’ll still be celebrating every milestone together just like this 🫂⏳.
 
-<span class="special-mark">Just a reminder:</span> I am extremely possessive about you 🔪😭, and you are strictly restricted to me. Nobody even comes close to what we have, and no one can ever separate us 😼.
+<span class="highlight-phrase">Just a reminder:</span> I am extremely possessive about you 🔪😭, and you are strictly restricted to me. Nobody even comes close to what we have, and no one can ever separate us 😼.
 
-Thank you for being my constant sanctuary and the best part of my days.
+Thank you for being my constant sanctuary and the absolute best part of my days.
 
 Happy Birthday once again meri Ishika 💋💘🧿✨
         </div>
 
-        <div class="letter-footer">
+        <div class="scroll-signature">
           Forever & Strictly Yours,<br>
           ~ Aak ❤️
         </div>
@@ -442,135 +525,135 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
   </div>
 
   <script>
-    /* Dynamic Golden Dust Background Canvas */
-    const canvas = document.getElementById('canvasSpace');
+    /* Golden Ambient Stardust System */
+    const canvas = document.getElementById('particleSpace');
     const ctx = canvas.getContext('2d');
-    let particles = [];
+    let stardust = [];
 
-    function setupCanvas() {
+    function initParticles() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      particles = [];
+      stardust = [];
       for (let i = 0; i < 90; i++) {
-        particles.push({
+        stardust.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           radius: Math.random() * 1.6 + 0.4,
-          speedY: -Math.random() * 0.4 - 0.1,
-          alpha: Math.random() * 0.7 + 0.3
+          speedY: -Math.random() * 0.4 - 0.15,
+          alpha: Math.random() * 0.7 + 0.25
         });
       }
     }
-    window.addEventListener('resize', setupCanvas);
-    setupCanvas();
+    window.addEventListener('resize', initParticles);
+    initParticles();
 
-    function renderCanvas() {
+    function cycleParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
+      stardust.forEach(p => {
         p.y += p.speedY;
         if (p.y < 0) p.y = canvas.height;
-        ctx.fillStyle = `rgba(223, 177, 91, ${p.alpha})`;
+        ctx.fillStyle = `rgba(246, 211, 101, ${p.alpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
       });
-      requestAnimationFrame(renderCanvas);
+      requestAnimationFrame(cycleParticles);
     }
-    renderCanvas();
+    cycleParticles();
 
-    /* Flow Controllers */
-    function switchCard(currentId, nextId) {
-      const curr = document.getElementById(currentId);
-      const next = document.getElementById(nextId);
-      curr.classList.remove('active');
+    /* Transition Handler */
+    function transitionCards(originId, targetId) {
+      const fromCard = document.getElementById(originId);
+      const toCard = document.getElementById(targetId);
+      fromCard.classList.remove('active');
       setTimeout(() => {
-        curr.style.display = 'none';
-        next.style.display = 'block';
-        setTimeout(() => next.classList.add('active'), 20);
-      }, 250);
+        fromCard.style.display = 'none';
+        toCard.style.display = 'block';
+        setTimeout(() => toCard.classList.add('active'), 25);
+      }, 300);
     }
 
-    /* Screen 1: Pin */
-    let enteredPin = "";
-    const rightPin = "1209";
+    /* Screen 1: Passcode Logic */
+    let enteredCode = "";
+    const validCode = "1209";
 
-    function dialKey(k) {
-      if (enteredPin.length < 4) {
-        enteredPin += k;
-        updatePinDots();
+    function enterDigit(digit) {
+      if (enteredCode.length < 4) {
+        enteredCode += digit;
+        refreshNodes();
       }
-      if (enteredPin.length === 4) verifyPin();
+      if (enteredCode.length === 4) testCode();
     }
-    function clearPin() {
-      enteredPin = "";
-      updatePinDots();
+    function clearCode() {
+      enteredCode = "";
+      refreshNodes();
       document.getElementById('pinError').innerText = "";
     }
-    function updatePinDots() {
+    function refreshNodes() {
       for (let i = 0; i < 4; i++) {
-        const d = document.getElementById('dot' + i);
-        if (i < enteredPin.length) d.classList.add('active');
-        else d.classList.remove('active');
+        const node = document.getElementById('n' + i);
+        if (i < enteredCode.length) node.classList.add('filled');
+        else node.classList.remove('filled');
       }
     }
-    function verifyPin() {
-      if (enteredPin === rightPin) {
-        document.getElementById('bgTrack').play().catch(() => {});
-        switchCard('stepPin', 'stepCake');
+    function testCode() {
+      if (enteredCode === validCode) {
+        document.getElementById('soundtrack').play().catch(() => {});
+        transitionCards('panelPin', 'panelCake');
       } else {
         document.getElementById('pinError').innerText = "GALAT CODE! HINT: APNA BIRTHDAY DATE";
-        setTimeout(clearPin, 600);
+        setTimeout(clearCode, 600);
       }
     }
 
-    /* Screen 2: Candle */
-    function blowCandle() {
-      const fl = document.getElementById('cakeFlame');
-      if (fl.classList.contains('off')) return;
-      fl.classList.add('off');
-      document.getElementById('hintCake').innerText = "WISH ACCEPTED ✨";
+    /* Screen 2: Flame Blow Logic */
+    function extinguishCandle() {
+      const glow = document.getElementById('candleGlow');
+      if (glow.classList.contains('extinguished')) return;
+      glow.classList.add('extinguished');
+      document.getElementById('cakeHint').innerText = "WISH LOCKED INTO ETERNITY ✨";
 
       confetti({
-        particleCount: 100,
-        spread: 75,
+        particleCount: 110,
+        spread: 80,
         origin: { y: 0.6 },
-        colors: ['#dfb15b', '#ff2a6d', '#ffffff']
+        colors: ['#f6d365', '#fda085', '#ff2a6d', '#ffffff']
       });
 
       setTimeout(() => {
-        switchCard('stepCake', 'stepQ1');
-      }, 1300);
+        transitionCards('panelCake', 'panelQ1');
+      }, 1400);
     }
 
-    /* Quizzes */
-    function wrongOption(btn, text) {
-      btn.classList.add('shake-anim');
-      const errBox = btn.closest('.stage-card').querySelector('.status-msg');
-      errBox.innerText = text;
-      setTimeout(() => btn.classList.remove('shake-anim'), 400);
+    /* Quizzes Interaction */
+    function invalidChoice(buttonElement, notice) {
+      buttonElement.classList.add('shake-target');
+      const errBox = buttonElement.closest('.cinema-card').querySelector('.feedback-line');
+      errBox.innerText = notice;
+      setTimeout(() => buttonElement.classList.remove('shake-target'), 400);
     }
 
-    function nextQuestion() {
-      switchCard('stepQ1', 'stepQ2');
+    function advanceToQ2() {
+      transitionCards('panelQ1', 'panelQ2');
     }
 
-    function correctBabu() {
+    function advanceToPledge() {
       confetti({
-        particleCount: 80,
-        spread: 60,
+        particleCount: 85,
+        spread: 65,
         origin: { y: 0.6 }
       });
-      switchCard('stepQ2', 'stepTrans');
+      transitionCards('panelQ2', 'panelPledge');
     }
 
-    function openFinalLetter() {
+    function revealLetter() {
       confetti({
-        particleCount: 150,
-        spread: 100,
+        particleCount: 160,
+        spread: 110,
         origin: { y: 0.5 },
-        colors: ['#dfb15b', '#fbe5a7', '#ff2a6d']
+        colors: ['#f6d365', '#fda085', '#ff2a6d', '#ffffff']
       });
-      switchCard('stepTrans', 'stepLetter');
+      transitionCards('panelPledge', 'panelLetter');
     }
   </script>
 </body>
