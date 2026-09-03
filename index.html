@@ -3,25 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Ishika • Royal Archive</title>
+  <title>For My Maharani • 12.09 ✨</title>
+  
+  <!-- Modern Libraries: Spline 3D Viewer, Confetti, Lucide Icons, Premium Fonts -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Sacramento&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --gold-primary: #f6d365;
-      --gold-secondary: #fda085;
-      --gold-glow: rgba(246, 211, 101, 0.4);
-      --glass-panel: rgba(14, 12, 22, 0.65);
-      --glass-border: rgba(255, 255, 255, 0.12);
+      --primary-pink: #ff5e8e;
+      --secondary-pink: #ff85a2;
+      --soft-glow: rgba(255, 110, 150, 0.4);
+      --glass-surface: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.22);
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
+
     body {
-      background: #030206;
+      background: radial-gradient(circle at 50% 20%, #201128 0%, #0c0814 60%, #050409 100%);
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -32,492 +39,530 @@
       overflow-x: hidden;
       position: relative;
     }
-    /* Dynamic Cyber-Aurora Mesh Background */
-    .aurora-bg {
+
+    /* Ambient Pastel Glow Mesh */
+    .glow-orb {
       position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .blob {
-      position: absolute;
-      width: 380px;
-      height: 380px;
       border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.45;
-      animation: floatMesh 16s ease-in-out infinite alternate;
-    }
-    .blob-1 {
-      top: -10%;
-      left: -15%;
-      background: radial-gradient(circle, #ff2a6d, transparent 70%);
-    }
-    .blob-2 {
-      bottom: -15%;
-      right: -10%;
-      background: radial-gradient(circle, #dfb15b, transparent 70%);
-      animation-duration: 20s;
-    }
-    .blob-3 {
-      top: 40%;
-      left: 30%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, #7928ca, transparent 70%);
-      animation-duration: 24s;
-    }
-    @keyframes floatMesh {
-      0% { transform: translate(0px, 0px) scale(1); }
-      50% { transform: translate(60px, 80px) scale(1.15); }
-      100% { transform: translate(-40px, 50px) scale(0.9); }
-    }
-    #particleSpace {
-      position: fixed;
-      inset: 0;
-      z-index: 2;
+      filter: blur(100px);
       pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+      animation: floatOrb 12s ease-in-out infinite alternate;
+    }
+    .orb-pink {
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, #ff4071, transparent 70%);
+      top: -80px;
+      left: -80px;
+    }
+    .orb-purple {
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, #9d4edd, transparent 70%);
+      bottom: -90px;
+      right: -90px;
+      animation-duration: 16s;
+    }
+    @keyframes floatOrb {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.15) translate(40px, 40px); }
     }
 
-    /* Glassmorphism Card Container */
-    .hub-container {
+    /* Floating Cute Animated Avatar */
+    .avatar-companion {
+      position: fixed;
+      bottom: 24px;
+      right: 18px;
+      width: 78px;
+      height: 78px;
+      z-index: 100;
+      cursor: pointer;
+      animation: avatarBounce 3s ease-in-out infinite;
+      filter: drop-shadow(0 10px 25px rgba(255, 94, 142, 0.45));
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .avatar-companion:hover, .avatar-companion:active {
+      transform: scale(1.18) rotate(6deg);
+    }
+    .avatar-bubble {
+      position: absolute;
+      top: -38px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      color: #1a1a24;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 14px;
+      white-space: nowrap;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      border-bottom-right-radius: 2px;
+      animation: bubblePulse 2.5s infinite ease-in-out;
+    }
+    @keyframes avatarBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    @keyframes bubblePulse {
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    /* Main Modern Dynamic Glass Card */
+    .main-wrapper {
       width: 100%;
-      max-width: 420px;
+      max-width: 430px;
       position: relative;
       z-index: 10;
     }
-    .cinema-card {
-      background: var(--glass-panel);
-      backdrop-filter: blur(40px) saturate(180%);
-      -webkit-backdrop-filter: blur(40px) saturate(180%);
-      border: 1px solid var(--glass-border);
-      border-radius: 36px;
-      padding: 36px 26px;
+
+    .super-card {
+      background: var(--glass-surface);
+      backdrop-filter: blur(45px) saturate(200%);
+      -webkit-backdrop-filter: blur(45px) saturate(200%);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 38px;
+      padding: 34px 24px;
       text-align: center;
-      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.35);
       display: none;
-      transform: scale(0.94);
-      opacity: 0;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: cardSpring 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      position: relative;
+      overflow: hidden;
     }
-    .cinema-card.active {
-      display: block;
-      transform: scale(1);
-      opacity: 1;
+    .super-card.active { display: block; }
+    @keyframes cardSpring {
+      from { opacity: 0; transform: scale(0.92) translateY(14px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .badge-capsule {
+    .cute-tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 2.5px;
+      gap: 7px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: var(--gold-primary);
-      background: rgba(246, 211, 101, 0.08);
-      border: 1px solid rgba(246, 211, 101, 0.25);
+      color: #ffd2e0;
+      background: rgba(255, 94, 142, 0.16);
+      border: 1px solid rgba(255, 94, 142, 0.35);
       padding: 7px 16px;
       border-radius: 999px;
       margin-bottom: 22px;
-      box-shadow: 0 0 20px rgba(246, 211, 101, 0.1);
     }
-    .pulse-optic {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold-primary);
-      box-shadow: 0 0 10px var(--gold-primary);
-      animation: opticPing 1.8s infinite;
+    .heart-pulse {
+      animation: heartBeat 1.4s infinite;
+      display: inline-block;
     }
-    @keyframes opticPing {
-      0%, 100% { opacity: 0.3; transform: scale(0.9); }
-      50% { opacity: 1; transform: scale(1.2); }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.3); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.2); }
     }
 
     h2 {
       font-family: 'Playfair Display', serif;
       font-size: 26px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #fff 30%, #ffd1b3);
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff 40%, #ffcad8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 8px;
-      letter-spacing: -0.3px;
     }
-    p.card-desc {
+    p.instruction {
       font-size: 13.5px;
-      color: #9b9ab2;
-      line-height: 1.6;
+      color: #b3acc2;
+      line-height: 1.5;
       margin-bottom: 26px;
     }
 
-    /* Screen 1: Futuristic Pin Pad */
-    .nodes-wrap {
+    /* Screen 1: Passcode Matrix */
+    .dots-strip {
       display: flex;
       justify-content: center;
       gap: 16px;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
-    .p-node {
-      width: 14px;
-      height: 14px;
+    .pin-circle {
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
-      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      border: 2px solid rgba(255, 255, 255, 0.25);
       transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .p-node.filled {
-      background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
-      border-color: var(--gold-primary);
-      box-shadow: 0 0 18px var(--gold-primary);
+    .pin-circle.lit {
+      background: linear-gradient(135deg, #ff5e8e, #ffa07a);
+      border-color: #ff5e8e;
+      box-shadow: 0 0 18px rgba(255, 94, 142, 0.8);
       transform: scale(1.25);
     }
-    .grid-matrix {
+    .dial-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       max-width: 270px;
       margin: 0 auto;
     }
-    .grid-key {
+    .key-unit {
       aspect-ratio: 1.25;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
       color: #fff;
       font-size: 22px;
-      font-weight: 600;
+      font-weight: 700;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      user-select: none;
-      transition: all 0.2s;
+      transition: all 0.18s;
     }
-    .grid-key:active {
-      background: linear-gradient(135deg, var(--gold-primary), var(--gold-secondary));
-      color: #000;
+    .key-unit:active {
+      background: linear-gradient(135deg, #ff5e8e, #ff85a2);
       transform: scale(0.92);
-      box-shadow: 0 0 25px rgba(246, 211, 101, 0.5);
+      box-shadow: 0 0 25px rgba(255, 94, 142, 0.6);
     }
-    .feedback-line {
-      color: #ff453a;
+    .err-toast {
+      color: #ff5964;
       font-size: 12.5px;
       min-height: 18px;
       margin-top: 15px;
-      letter-spacing: 0.5px;
-    }
-
-    /* Screen 2: Holographic Cake & Candle */
-    .cake-core {
-      margin: 30px auto;
-      cursor: pointer;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .cake-stand {
-      width: 170px;
-      height: 85px;
-      background: linear-gradient(180deg, #ff2a6d 0%, #70062a 100%);
-      border-radius: 50% / 30%;
-      position: relative;
-      box-shadow: 0 15px 40px rgba(255, 42, 109, 0.4);
-    }
-    .cake-glaze {
-      width: 170px;
-      height: 48px;
-      background: linear-gradient(180deg, #ffffff 0%, #ffd6e0 100%);
-      border-radius: 50% / 40%;
-      position: absolute;
-      top: -18px;
-      box-shadow: inset 0 -3px 10px rgba(0,0,0,0.1);
-    }
-    .candle-pillar {
-      width: 12px;
-      height: 48px;
-      background: repeating-linear-gradient(45deg, var(--gold-primary), var(--gold-primary) 6px, #fff 6px, #fff 12px);
-      border-radius: 6px;
-      position: absolute;
-      top: -50px;
-      left: calc(50% - 6px);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-    }
-    .candle-glow {
-      width: 16px;
-      height: 26px;
-      background: radial-gradient(circle, #fff, #ffd600 50%, #ff4500 100%);
-      border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
-      position: absolute;
-      top: -26px;
-      left: -2px;
-      box-shadow: 0 0 20px #ffd600, 0 0 45px #ff5722;
-      animation: flameWiggle 0.12s infinite alternate ease-in-out;
-      transition: all 0.35s ease;
-    }
-    @keyframes flameWiggle {
-      0% { transform: scale(1) rotate(-1.5deg); }
-      100% { transform: scale(1.08) rotate(1.5deg); }
-    }
-    .candle-glow.extinguished {
-      transform: scale(0);
-      opacity: 0;
-    }
-    .guide-cue {
-      margin-top: 32px;
-      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold-primary);
-      animation: guidePulse 1.8s infinite;
-    }
-    @keyframes guidePulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
     }
 
-    /* Screen 3 & 4: Interactive Quiz Flow */
-    .button-stack {
+    /* Screen 2: Spline 3D Interactive Model Canvas */
+    .spline-box {
+      width: 100%;
+      height: 250px;
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    spline-viewer {
+      width: 100%;
+      height: 100%;
+    }
+    .blow-cta {
+      background: linear-gradient(135deg, #ff5e8e, #ff85a2);
+      border: none;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 28px;
+      border-radius: 22px;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(255, 94, 142, 0.45);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .blow-cta:active {
+      transform: scale(0.95);
+      box-shadow: 0 5px 15px rgba(255, 94, 142, 0.3);
+    }
+
+    /* Quiz Flow */
+    .quiz-options {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-top: 24px;
+      gap: 13px;
+      margin-top: 20px;
     }
-    .choice-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .quiz-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
       color: #fff;
       font-size: 15px;
       font-weight: 600;
-      padding: 17px 20px;
-      border-radius: 20px;
+      padding: 18px 20px;
+      border-radius: 22px;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      outline: none;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    .choice-btn:active {
+    .quiz-btn:active {
       transform: scale(0.96);
-      background: rgba(246, 211, 101, 0.15);
-      border-color: var(--gold-primary);
+      background: rgba(255, 94, 142, 0.2);
+      border-color: #ff5e8e;
     }
     .shake-target {
-      animation: shakeFeedback 0.4s ease;
+      animation: shakeMotion 0.4s ease;
     }
-    @keyframes shakeFeedback {
+    @keyframes shakeMotion {
       0%, 100% { transform: translateX(0); }
       20%, 60% { transform: translateX(-8px); }
       40%, 80% { transform: translateX(8px); }
     }
 
-    /* Screen 5 & 6: Royal Sealed Scroll */
-    .scroll-frame {
-      background: linear-gradient(145deg, #15121c 0%, #0a0810 100%);
-      border: 1.5px solid rgba(246, 211, 101, 0.4);
+    /* Screen 5 & 6: Aesthetic 3D Folding Letter Experience */
+    .envelope-teaser {
+      width: 140px;
+      height: 100px;
+      margin: 20px auto;
+      position: relative;
+      cursor: pointer;
+      animation: envelopeFloat 3s ease-in-out infinite;
+    }
+    @keyframes envelopeFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .envelope-body {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #ffd9e2, #ffb3c6);
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(255, 94, 142, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+
+    /* Final Letter Styled as Real Handcrafted Aesthetic Note */
+    .letter-parchment {
+      background: #fdfbf7;
+      color: #2b2528;
       border-radius: 26px;
       padding: 30px 22px;
       text-align: left;
-      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.9), 0 20px 50px rgba(0, 0, 0, 0.8);
       position: relative;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      animation: unrollSheet 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .wax-emblem {
-      width: 54px;
+    @keyframes unrollSheet {
+      from { transform: scale(0.85) rotate(-2deg); opacity: 0; }
+      to { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .letter-parchment::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #ff5e8e, #ffb3c6, #9d4edd);
+    }
+    .aesthetic-stamp {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      width: 48px;
       height: 54px;
-      background: radial-gradient(circle, #c41c38 0%, #590815 100%);
-      border-radius: 50%;
+      border: 1.5px dashed #ff5e8e;
+      border-radius: 6px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      font-family: 'Cinzel', serif;
-      font-weight: 900;
-      color: #ffd700;
-      font-size: 22px;
-      margin: 0 auto 18px auto;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.7), inset 0 0 6px rgba(255, 215, 0, 0.4);
-      border: 1px solid rgba(255, 215, 0, 0.5);
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      color: #ff5e8e;
+      background: #fff;
     }
-    .scroll-title {
+    .letter-salutation {
       font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      color: var(--gold-primary);
-      text-align: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: #1a1618;
       margin-bottom: 4px;
     }
-    .scroll-timestamp {
-      font-family: 'Cinzel', serif;
+    .letter-date-tag {
       font-size: 11px;
-      letter-spacing: 2px;
-      color: #9284a0;
-      text-align: center;
-      margin-bottom: 24px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #ff5e8e;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
-    .scroll-content {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+    .letter-words {
       font-size: 14.5px;
       line-height: 1.85;
-      color: #e6e0ee;
+      color: #4a4247;
       white-space: pre-line;
-      animation: textBloom 1.2s ease forwards;
+      font-weight: 500;
     }
-    @keyframes textBloom {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .highlight-phrase {
-      color: var(--gold-primary);
+    .highlight-pink {
+      color: #d81159;
       font-weight: 700;
     }
-    .scroll-signature {
+    .letter-handwriting {
       margin-top: 26px;
       text-align: right;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      color: var(--gold-primary);
-      font-size: 16px;
+      font-family: 'Sacramento', cursive;
+      font-size: 32px;
+      color: #d81159;
+      line-height: 1;
     }
   </style>
 </head>
 <body>
 
-  <!-- Dynamic Cyber Aurora Mesh -->
-  <div class="aurora-bg">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+  <!-- Ambient Glow -->
+  <div class="glow-orb orb-pink"></div>
+  <div class="glow-orb orb-purple"></div>
+
+  <!-- Cute Interactive Companion Mascot -->
+  <div class="avatar-companion" onclick="pokeAvatar()">
+    <div class="avatar-bubble" id="avatarMsg">Hiee Birthday Girl! ✨</div>
+    <!-- Cute 3D Style Baby/Princess SVG Avatar -->
+    <svg viewBox="0 0 100 100" width="100%" height="100%">
+      <circle cx="50" cy="50" r="46" fill="#ffd1dc" />
+      <!-- Tiara -->
+      <polygon points="36,25 50,15 64,25 58,32 42,32" fill="#ffd700" stroke="#f39c12" stroke-width="2" />
+      <circle cx="50" cy="15" r="3" fill="#ff4d6d" />
+      <!-- Hair -->
+      <path d="M 22 50 C 22 25 78 25 78 50 C 78 40 22 40 22 50" fill="#4a2e1b" />
+      <!-- Eyes -->
+      <circle cx="38" cy="48" r="5" fill="#2d1e18" />
+      <circle cx="62" cy="48" r="5" fill="#2d1e18" />
+      <circle cx="40" cy="46" r="1.8" fill="#fff" />
+      <circle cx="64" cy="46" r="1.8" fill="#fff" />
+      <!-- Blush -->
+      <ellipse cx="32" cy="55" rx="5" ry="3" fill="#ff758f" opacity="0.6" />
+      <ellipse cx="68" cy="55" rx="5" ry="3" fill="#ff758f" opacity="0.6" />
+      <!-- Smile -->
+      <path d="M 45 57 Q 50 63 55 57" stroke="#2d1e18" stroke-width="2.5" fill="transparent" stroke-linecap="round" />
+    </svg>
   </div>
 
-  <canvas id="particleSpace"></canvas>
-  <audio id="soundtrack" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-112199.mp3"></audio>
+  <audio id="bgSong" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-112199.mp3"></audio>
 
-  <div class="hub-container">
+  <div class="main-wrapper">
 
-    <!-- Step 1: Security Handshake (Pin) -->
-    <div id="panelPin" class="cinema-card active">
-      <div class="badge-capsule">
-        <div class="pulse-optic"></div> Protected Transmission
-      </div>
-      <h2>Identity Verification</h2>
-      <p class="card-desc">Enter your exclusive date passcode (DDMM)</p>
+    <!-- Screen 1: Passcode -->
+    <div id="cardPin" class="super-card active">
+      <div class="cute-tag"><span class="heart-pulse">💖</span> Secret Gateway</div>
+      <h2>Identity Check!</h2>
+      <p class="instruction">Enter the special date passcode to begin (DDMM)</p>
 
-      <div class="nodes-wrap">
-        <div class="p-node" id="n0"></div>
-        <div class="p-node" id="n1"></div>
-        <div class="p-node" id="n2"></div>
-        <div class="p-node" id="n3"></div>
+      <div class="dots-strip">
+        <div class="pin-circle" id="d0"></div>
+        <div class="pin-circle" id="d1"></div>
+        <div class="pin-circle" id="d2"></div>
+        <div class="pin-circle" id="d3"></div>
       </div>
 
-      <div class="grid-matrix">
-        <div class="grid-key" onclick="enterDigit('1')">1</div>
-        <div class="grid-key" onclick="enterDigit('2')">2</div>
-        <div class="grid-key" onclick="enterDigit('3')">3</div>
-        <div class="grid-key" onclick="enterDigit('4')">4</div>
-        <div class="grid-key" onclick="enterDigit('5')">5</div>
-        <div class="grid-key" onclick="enterDigit('6')">6</div>
-        <div class="grid-key" onclick="enterDigit('7')">7</div>
-        <div class="grid-key" onclick="enterDigit('8')">8</div>
-        <div class="grid-key" onclick="enterDigit('9')">9</div>
-        <div class="grid-key" onclick="clearCode()">✕</div>
-        <div class="grid-key" onclick="enterDigit('0')">0</div>
-        <div class="grid-key" onclick="testCode()">✓</div>
+      <div class="dial-grid">
+        <div class="key-unit" onclick="pressDigit('1')">1</div>
+        <div class="key-unit" onclick="pressDigit('2')">2</div>
+        <div class="key-unit" onclick="pressDigit('3')">3</div>
+        <div class="key-unit" onclick="pressDigit('4')">4</div>
+        <div class="key-unit" onclick="pressDigit('5')">5</div>
+        <div class="key-unit" onclick="pressDigit('6')">6</div>
+        <div class="key-unit" onclick="pressDigit('7')">7</div>
+        <div class="key-unit" onclick="pressDigit('8')">8</div>
+        <div class="key-unit" onclick="pressDigit('9')">9</div>
+        <div class="key-unit" onclick="clearAll()">✕</div>
+        <div class="key-unit" onclick="pressDigit('0')">0</div>
+        <div class="key-unit" onclick="validatePin()">✓</div>
       </div>
-      <div class="feedback-line" id="pinError"></div>
+      <div class="err-toast" id="pinToast"></div>
     </div>
 
-    <!-- Step 2: Candle Flame Ceremony -->
-    <div id="panelCake" class="cinema-card">
-      <div class="badge-capsule">
-        <div class="pulse-optic"></div> Birthday Protocol
-      </div>
-      <h2>Make A Silent Wish</h2>
-      <p class="card-desc">Blow out the holographic candle to unlock memory archives</p>
+    <!-- Screen 2: 3D Spline Interactive Cake Scene -->
+    <div id="cardCake" class="super-card">
+      <div class="cute-tag"><span class="heart-pulse">🎂</span> Birthday Ritual</div>
+      <h2>Make A Sweet Wish ✨</h2>
+      <p class="instruction">Interact with your 3D cake & blow the candle</p>
 
-      <div class="cake-core" onclick="extinguishCandle()">
-        <div class="candle-pillar">
-          <div class="candle-glow" id="candleGlow"></div>
-        </div>
-        <div class="cake-glaze"></div>
-        <div class="cake-stand"></div>
-        <div class="guide-cue" id="cakeHint">Tap The Flame To Blow ✨</div>
+      <div class="spline-box">
+        <spline-viewer url="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"></spline-viewer>
       </div>
-    </div>
 
-    <!-- Step 3: Interactive Question 1 -->
-    <div id="panelQ1" class="cinema-card">
-      <div class="badge-capsule">
-        <div class="pulse-optic"></div> Royal Inquiry • 01
-      </div>
-      <h2>How are you? ❤️</h2>
-      <p class="card-desc">Acha yeh batao... aaj kya hai?</p>
-
-      <div class="button-stack">
-        <button class="choice-btn" onclick="invalidChoice(this, 'Arre sirf maharani nahi! Galat jawab 😤')">
-          Maharani ka birthday 👑
-        </button>
-        <button class="choice-btn" onclick="advanceToQ2()">
-          Aak ki maharani ka birthday 🧿✨
-        </button>
-      </div>
-      <div class="feedback-line" id="q1Hint"></div>
-    </div>
-
-    <!-- Step 4: Interactive Question 2 -->
-    <div id="panelQ2" class="cinema-card">
-      <div class="badge-capsule">
-        <div class="pulse-optic"></div> Final Inquiry • 02
-      </div>
-      <h2>Sach Sach Batana!</h2>
-      <p class="card-desc">Aap meri babu ho ya nahi? 😼</p>
-
-      <div class="button-stack">
-        <button class="choice-btn" onclick="invalidChoice(this, 'Wrong answer! Sirf aur sirf meri babu ho tum 🔪😭')">
-          Nahi 🙅🏻‍♀️
-        </button>
-        <button class="choice-btn" onclick="advanceToPledge()">
-          Haan, strictly aur humesha sirf aapki babu ❤️🥺
-        </button>
-      </div>
-      <div class="feedback-line" id="q2Hint"></div>
-    </div>
-
-    <!-- Step 5: Love Pledge Transition -->
-    <div id="panelPledge" class="cinema-card">
-      <div class="badge-capsule">
-        <div class="pulse-optic"></div> A Living Promise
-      </div>
-      <h2>I Love You So Much Baby ❤️</h2>
-      <p class="card-desc" style="font-size: 15px; color: var(--gold-primary); line-height: 1.7; margin-top: 16px;">
-        I really hope you enjoy this exclusive little world made just for you... Now, unlocking your permanent sealed letter.
-      </p>
-      <button class="choice-btn" style="margin-top: 20px; border-color: var(--gold-primary);" onclick="revealLetter()">
-        Open Sealed Letter 📜✨
+      <button class="blow-cta" onclick="finishRitual()">
+        Blow The Candle ✨💨
       </button>
     </div>
 
-    <!-- Step 6: Royal Golden Scroll Archive -->
-    <div id="panelLetter" class="cinema-card">
-      <div class="scroll-frame">
-        <div class="wax-emblem">I</div>
-        <div class="scroll-title">Happy Birthday, Ishika ❤️</div>
-        <div class="scroll-timestamp">12TH SEPTEMBER • ETERNITY</div>
+    <!-- Screen 3: Interactive Question 1 -->
+    <div id="cardQ1" class="super-card">
+      <div class="cute-tag">Round 01 • Mood Check 🧸</div>
+      <h2>How are you? ❤️</h2>
+      <p class="instruction">Acha yeh batao... aaj kya hai?</p>
 
-        <div class="scroll-content">
+      <div class="quiz-options">
+        <button class="quiz-btn" onclick="wrongClick(this, 'Arre sirf maharani nahi! Socho socho 😤')">
+          Maharani ka birthday 👑
+        </button>
+        <button class="quiz-btn" onclick="goToQ2()">
+          Aak ki maharani ka birthday 🧿✨
+        </button>
+      </div>
+      <div class="err-toast" id="q1Toast"></div>
+    </div>
+
+    <!-- Screen 4: Interactive Question 2 -->
+    <div id="cardQ2" class="super-card">
+      <div class="cute-tag">Round 02 • Strict Question 🔪</div>
+      <h2>Sach Sach Batana!</h2>
+      <p class="instruction">Aap meri babu ho ya nahi? 😼</p>
+
+      <div class="quiz-options">
+        <button class="quiz-btn" onclick="wrongClick(this, 'Wrong answer! Sirf aur sirf meri babu ho tum 🔪😭')">
+          Nahi 🙅🏻‍♀️
+        </button>
+        <button class="quiz-btn" onclick="goToPreLetter()">
+          Haan, strictly aur humesha sirf aapki babu ❤️🥺
+        </button>
+      </div>
+      <div class="err-toast" id="q2Toast"></div>
+    </div>
+
+    <!-- Screen 5: Love Note Envelope Reveal -->
+    <div id="cardPreLetter" class="super-card">
+      <div class="cute-tag"><span class="heart-pulse">💌</span> Strictly Mine</div>
+      <h2>I Love You So Much Baby ❤️</h2>
+      <p class="instruction" style="color: #ffcad8; font-size: 15px; margin-top: 14px;">
+        I really hope you loved your surprises so far! Now, tap to unpack your handwritten aesthetic letter...
+      </p>
+
+      <div class="envelope-teaser" onclick="openParchment()">
+        <div class="envelope-body">💌</div>
+      </div>
+
+      <button class="blow-cta" style="margin-top: 10px;" onclick="openParchment()">
+        Read Handwritten Letter 📜✨
+      </button>
+    </div>
+
+    <!-- Screen 6: Authentic Aesthetic Letter -->
+    <div id="cardLetter" class="super-card" style="padding: 16px;">
+      <div class="letter-parchment">
+        <div class="aesthetic-stamp">
+          <span>12.09</span>
+          <span>SPECIAL</span>
+        </div>
+
+        <div class="letter-salutation">Happy Birthday, Ishika ❤️</div>
+        <div class="letter-date-tag">September 12 • Exclusively Mine</div>
+
+        <div class="letter-words">
 Happy Birthday to the most irreplaceable person in my entire life! 🥺❤️
 
 Whatever is going on in my world, you are the only one who truly understands me without me needing to explain a single thing. That proposal night is forever locked in my heart, and words will never be enough to describe how precious you are to me 🔒✨.
 
 It’s only been 1 month today, but time will just fly by—kab 1 saal aur kab 10 saal honge pata bhi nahi chalega, and we’ll still be celebrating every milestone together just like this 🫂⏳.
 
-<span class="highlight-phrase">Just a reminder:</span> I am extremely possessive about you 🔪😭, and you are strictly restricted to me. Nobody even comes close to what we have, and no one can ever separate us 😼.
+<span class="highlight-pink">Just a reminder:</span> I am extremely possessive about you 🔪😭, and you are strictly restricted to me. Nobody even comes close to what we have, and no one can ever separate us 😼.
 
 Thank you for being my constant sanctuary and the absolute best part of my days.
 
 Happy Birthday once again meri Ishika 💋💘🧿✨
         </div>
 
-        <div class="scroll-signature">
-          Forever & Strictly Yours,<br>
-          ~ Aak ❤️
+        <div class="letter-handwriting">
+          Forever Yours, Aak ❤️
         </div>
       </div>
     </div>
@@ -525,135 +570,121 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
   </div>
 
   <script>
-    /* Golden Ambient Stardust System */
-    const canvas = document.getElementById('particleSpace');
-    const ctx = canvas.getContext('2d');
-    let stardust = [];
-
-    function initParticles() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      stardust = [];
-      for (let i = 0; i < 90; i++) {
-        stardust.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.6 + 0.4,
-          speedY: -Math.random() * 0.4 - 0.15,
-          alpha: Math.random() * 0.7 + 0.25
-        });
-      }
-    }
-    window.addEventListener('resize', initParticles);
-    initParticles();
-
-    function cycleParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stardust.forEach(p => {
-        p.y += p.speedY;
-        if (p.y < 0) p.y = canvas.height;
-        ctx.fillStyle = `rgba(246, 211, 101, ${p.alpha})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fill();
-      });
-      requestAnimationFrame(cycleParticles);
-    }
-    cycleParticles();
-
-    /* Transition Handler */
-    function transitionCards(originId, targetId) {
-      const fromCard = document.getElementById(originId);
-      const toCard = document.getElementById(targetId);
-      fromCard.classList.remove('active');
+    /* Card Transitions */
+    function navCard(fromId, toId) {
+      const fromEl = document.getElementById(fromId);
+      const toEl = document.getElementById(toId);
+      fromEl.classList.remove('active');
       setTimeout(() => {
-        fromCard.style.display = 'none';
-        toCard.style.display = 'block';
-        setTimeout(() => toCard.classList.add('active'), 25);
+        fromEl.style.display = 'none';
+        toEl.style.display = 'block';
+        setTimeout(() => toEl.classList.add('active'), 25);
       }, 300);
     }
 
     /* Screen 1: Passcode Logic */
-    let enteredCode = "";
-    const validCode = "1209";
+    let pinCode = "";
+    const passTarget = "1209";
 
-    function enterDigit(digit) {
-      if (enteredCode.length < 4) {
-        enteredCode += digit;
-        refreshNodes();
+    function pressDigit(num) {
+      if (pinCode.length < 4) {
+        pinCode += num;
+        refreshDots();
       }
-      if (enteredCode.length === 4) testCode();
+      if (pinCode.length === 4) validatePin();
     }
-    function clearCode() {
-      enteredCode = "";
-      refreshNodes();
-      document.getElementById('pinError').innerText = "";
+    function clearAll() {
+      pinCode = "";
+      refreshDots();
+      document.getElementById('pinToast').innerText = "";
     }
-    function refreshNodes() {
+    function refreshDots() {
       for (let i = 0; i < 4; i++) {
-        const node = document.getElementById('n' + i);
-        if (i < enteredCode.length) node.classList.add('filled');
-        else node.classList.remove('filled');
+        const d = document.getElementById('d' + i);
+        if (i < pinCode.length) d.classList.add('lit');
+        else d.classList.remove('lit');
       }
     }
-    function testCode() {
-      if (enteredCode === validCode) {
-        document.getElementById('soundtrack').play().catch(() => {});
-        transitionCards('panelPin', 'panelCake');
+    function validatePin() {
+      if (pinCode === passTarget) {
+        document.getElementById('bgSong').play().catch(() => {});
+        triggerHearts();
+        navCard('cardPin', 'cardCake');
       } else {
-        document.getElementById('pinError').innerText = "GALAT CODE! HINT: APNA BIRTHDAY DATE";
-        setTimeout(clearCode, 600);
+        document.getElementById('pinToast').innerText = "WRONG CODE! HINT: HER SPECIAL DATE (DDMM)";
+        setTimeout(clearAll, 600);
       }
     }
 
-    /* Screen 2: Flame Blow Logic */
-    function extinguishCandle() {
-      const glow = document.getElementById('candleGlow');
-      if (glow.classList.contains('extinguished')) return;
-      glow.classList.add('extinguished');
-      document.getElementById('cakeHint').innerText = "WISH LOCKED INTO ETERNITY ✨";
-
+    /* Screen 2: Cake Blow */
+    function finishRitual() {
       confetti({
-        particleCount: 110,
-        spread: 80,
+        particleCount: 140,
+        spread: 90,
         origin: { y: 0.6 },
-        colors: ['#f6d365', '#fda085', '#ff2a6d', '#ffffff']
+        colors: ['#ff5e8e', '#ffd2e0', '#ffd700', '#ffffff']
       });
-
       setTimeout(() => {
-        transitionCards('panelCake', 'panelQ1');
-      }, 1400);
+        navCard('cardCake', 'cardQ1');
+      }, 1000);
     }
 
-    /* Quizzes Interaction */
-    function invalidChoice(buttonElement, notice) {
-      buttonElement.classList.add('shake-target');
-      const errBox = buttonElement.closest('.cinema-card').querySelector('.feedback-line');
-      errBox.innerText = notice;
-      setTimeout(() => buttonElement.classList.remove('shake-target'), 400);
+    /* Quiz Interactions */
+    function wrongClick(btn, warning) {
+      btn.classList.add('shake-target');
+      const box = btn.closest('.super-card').querySelector('.err-toast');
+      box.innerText = warning;
+      setTimeout(() => btn.classList.remove('shake-target'), 400);
     }
-
-    function advanceToQ2() {
-      transitionCards('panelQ1', 'panelQ2');
+    function goToQ2() {
+      triggerHearts();
+      navCard('cardQ1', 'cardQ2');
     }
-
-    function advanceToPledge() {
+    function goToPreLetter() {
       confetti({
-        particleCount: 85,
-        spread: 65,
+        particleCount: 90,
+        spread: 70,
         origin: { y: 0.6 }
       });
-      transitionCards('panelQ2', 'panelPledge');
+      navCard('cardQ2', 'cardPreLetter');
+    }
+    function openParchment() {
+      confetti({
+        particleCount: 180,
+        spread: 120,
+        origin: { y: 0.5 },
+        colors: ['#ff5e8e', '#ff85a2', '#ffd700', '#fff']
+      });
+      navCard('cardPreLetter', 'cardLetter');
     }
 
-    function revealLetter() {
+    /* Avatar Mascot Interactions */
+    const cuteReplies = [
+      "Aap meri babu ho! 🥺",
+      "Happy Birthday Ishika! 🎂",
+      "Aak loves you the most! 🧿",
+      "Cutest Maharani ever 👑",
+      "Always strictly his! 🔒✨"
+    ];
+    let replyIndex = 0;
+    function pokeAvatar() {
+      const bubble = document.getElementById('avatarMsg');
+      bubble.innerText = cuteReplies[replyIndex];
+      replyIndex = (replyIndex + 1) % cuteReplies.length;
       confetti({
-        particleCount: 160,
-        spread: 110,
-        origin: { y: 0.5 },
-        colors: ['#f6d365', '#fda085', '#ff2a6d', '#ffffff']
+        particleCount: 25,
+        spread: 40,
+        origin: { x: 0.9, y: 0.9 }
       });
-      transitionCards('panelPledge', 'panelLetter');
+    }
+
+    function triggerHearts() {
+      confetti({
+        particleCount: 40,
+        scalar: 1.2,
+        spread: 60,
+        origin: { y: 0.6 }
+      });
     }
   </script>
 </body>
