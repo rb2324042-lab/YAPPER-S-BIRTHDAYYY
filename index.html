@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>For My BBB 🐼 • 12.09</title>
+  <title>BBB 🐼 • 15th Birthday Milestone</title>
   
-  <!-- Modern Libraries: Canvas Confetti & Google Luxury Fonts -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary: #ff3366;
-      --primary-glow: rgba(255, 51, 102, 0.45);
+      --primary: #ff2a6d;
+      --primary-glow: rgba(255, 42, 109, 0.45);
       --gold: #f4c430;
       --gold-glow: rgba(244, 196, 48, 0.35);
-      --bg: #06050a;
-      --glass: rgba(18, 14, 28, 0.75);
+      --bg: #050409;
+      --glass: rgba(16, 13, 25, 0.82);
       --border: rgba(255, 255, 255, 0.14);
     }
 
@@ -38,107 +37,135 @@
       padding: 16px;
       font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
-      position: relative;
+      perspective: 1200px;
     }
 
-    /* Ambient Dynamic Glowing Mesh */
-    .aurora-wrap {
+    /* Studio AI Lighting Mesh */
+    .studio-aurora {
       position: fixed;
       inset: 0;
       z-index: 1;
       pointer-events: none;
       overflow: hidden;
     }
-    .orb {
+    .light-blob {
       position: absolute;
       border-radius: 50%;
-      filter: blur(90px);
+      filter: blur(100px);
       opacity: 0.55;
-      animation: floatOrb 14s infinite alternate ease-in-out;
+      animation: floatLight 16s infinite alternate ease-in-out;
     }
-    .orb-1 {
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, #ff2a6d, transparent 70%);
-      top: -60px;
-      left: -80px;
+    .blob-1 {
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, #ff2a6d 0%, transparent 70%);
+      top: -10%;
+      left: -15%;
     }
-    .orb-2 {
-      width: 350px;
-      height: 350px;
-      background: radial-gradient(circle, #8a2be2, transparent 70%);
-      bottom: -80px;
-      right: -80px;
-      animation-duration: 18s;
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #7928ca 0%, transparent 70%);
+      bottom: -15%;
+      right: -10%;
+      animation-duration: 20s;
     }
-    @keyframes floatOrb {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(50px, 60px) scale(1.18); }
+    @keyframes floatLight {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.2) translate(50px, 40px); }
     }
 
-    /* Interactive Cute Panda Companion */
+    /* Interactive 3D Panda Mascot */
     .panda-companion {
       position: fixed;
-      bottom: 22px;
+      bottom: 20px;
       right: 18px;
-      width: 76px;
-      height: 76px;
+      width: 78px;
+      height: 78px;
       z-index: 100;
       cursor: pointer;
-      animation: pandaBounce 3s ease-in-out infinite;
-      filter: drop-shadow(0 12px 25px rgba(255, 51, 102, 0.45));
-      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: pandaFloat 3.2s ease-in-out infinite;
+      filter: drop-shadow(0 14px 28px rgba(255, 42, 109, 0.45));
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .panda-companion:active {
-      transform: scale(1.22) rotate(8deg);
+      transform: scale(1.25) rotate(10deg);
     }
     .panda-bubble {
       position: absolute;
       top: -38px;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      color: #0b0914;
+      background: rgba(255, 255, 255, 0.96);
+      color: #0d0b14;
       font-size: 11px;
       font-weight: 800;
       padding: 5px 12px;
       border-radius: 14px;
       white-space: nowrap;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
       border-bottom-right-radius: 2px;
     }
-    @keyframes pandaBounce {
+    @keyframes pandaFloat {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-12px); }
     }
 
-    /* App Frame Container */
-    .app-box {
+    /* Core Frame */
+    .viewport-box {
       width: 100%;
-      max-width: 420px;
+      max-width: 425px;
       position: relative;
       z-index: 10;
     }
 
-    .cinema-panel {
+    .studio-panel {
       background: var(--glass);
-      backdrop-filter: blur(40px) saturate(180%);
-      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      backdrop-filter: blur(45px) saturate(190%);
+      -webkit-backdrop-filter: blur(45px) saturate(190%);
       border: 1.5px solid var(--border);
-      border-radius: 36px;
+      border-radius: 38px;
       padding: 34px 24px;
       text-align: center;
-      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.92), inset 0 1px 2px rgba(255, 255, 255, 0.35);
       display: none;
-      animation: springEntry 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       position: relative;
     }
-    .cinema-panel.active { display: block; }
-    @keyframes springEntry {
-      from { opacity: 0; transform: scale(0.92) translateY(16px); }
+    .studio-panel.active { display: block; }
+
+    /* Modern AI Screen Transitions */
+    .anim-spring {
+      animation: springIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes springIn {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .badge-chip {
+    .anim-flip3d {
+      animation: flip3dIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes flip3dIn {
+      from { opacity: 0; transform: rotateY(70deg) scale(0.85); filter: blur(6px); }
+      to { opacity: 1; transform: rotateY(0deg) scale(1); filter: blur(0); }
+    }
+
+    .anim-slide-tilt {
+      animation: slideTiltIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes slideTiltIn {
+      from { opacity: 0; transform: translateX(60px) rotate(4deg) scale(0.92); }
+      to { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
+    }
+
+    .anim-zoom-burst {
+      animation: zoomBurstIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes zoomBurstIn {
+      from { opacity: 0; transform: scale(0.7); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .status-badge {
       display: inline-flex;
       align-items: center;
       gap: 7px;
@@ -163,41 +190,41 @@
       -webkit-text-fill-color: transparent;
       margin-bottom: 8px;
     }
-    p.sub-guide {
+    p.guide-note {
       font-size: 13.5px;
-      color: #9d99ad;
+      color: #a49fb5;
       line-height: 1.5;
       margin-bottom: 26px;
     }
 
     /* Screen 1: Passcode Matrix */
-    .dots-flex {
+    .nodes-row {
       display: flex;
       justify-content: center;
       gap: 16px;
       margin-bottom: 28px;
     }
-    .dot-node {
+    .node-dot {
       width: 15px;
       height: 15px;
       border-radius: 50%;
       border: 2px solid rgba(255, 255, 255, 0.25);
       transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .dot-node.lit {
+    .node-dot.lit {
       background: linear-gradient(135deg, var(--primary), #ff85a2);
       border-color: var(--primary);
       box-shadow: 0 0 18px var(--primary);
       transform: scale(1.25);
     }
-    .key-matrix {
+    .key-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      max-width: 270px;
+      max-width: 275px;
       margin: 0 auto;
     }
-    .key-tile {
+    .grid-btn {
       aspect-ratio: 1.25;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -211,31 +238,31 @@
       cursor: pointer;
       transition: all 0.18s;
     }
-    .key-tile:active {
+    .grid-btn:active {
       background: linear-gradient(135deg, var(--primary), #ff758f);
       transform: scale(0.92);
       box-shadow: 0 0 25px var(--primary-glow);
     }
-    .status-toast {
+    .toast-msg {
       font-size: 13px;
       min-height: 20px;
-      margin-top: 15px;
+      margin-top: 16px;
       font-weight: 700;
       letter-spacing: 0.5px;
       transition: color 0.3s;
     }
-    .status-toast.err { color: #ff4d6d; }
-    .status-toast.succ { color: #52b788; }
+    .toast-msg.err { color: #ff4d6d; }
+    .toast-msg.succ { color: #52b788; }
 
     /* Screen 2: Hologram Candle Cake */
-    .cake-center {
+    .cake-wrap {
       margin: 25px auto 35px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    .cake-platter {
+    .cake-base-dish {
       width: 170px;
       height: 80px;
       background: linear-gradient(180deg, #ff2a6d 0%, #70062a 100%);
@@ -243,7 +270,7 @@
       position: relative;
       box-shadow: 0 15px 40px rgba(255, 42, 109, 0.4);
     }
-    .cake-icing {
+    .cake-cream-glaze {
       width: 170px;
       height: 46px;
       background: linear-gradient(180deg, #ffffff 0%, #ffd6e0 100%);
@@ -251,7 +278,7 @@
       position: absolute;
       top: -18px;
     }
-    .stick {
+    .candle-rod {
       width: 12px;
       height: 48px;
       background: repeating-linear-gradient(45deg, var(--gold), var(--gold) 6px, #fff 6px, #fff 12px);
@@ -260,7 +287,7 @@
       top: -50px;
       left: calc(50% - 6px);
     }
-    .flame-orb {
+    .flame-light {
       width: 16px;
       height: 26px;
       background: radial-gradient(circle, #fff, #ffd600 50%, #ff4500 100%);
@@ -269,31 +296,31 @@
       top: -26px;
       left: -2px;
       box-shadow: 0 0 20px #ffd600, 0 0 45px #ff5722;
-      animation: flickerAnim 0.12s infinite alternate ease-in-out;
+      animation: flameFlicker 0.12s infinite alternate ease-in-out;
       transition: all 0.35s ease;
     }
-    @keyframes flickerAnim {
+    @keyframes flameFlicker {
       0% { transform: scale(1) rotate(-1.5deg); }
       100% { transform: scale(1.08) rotate(1.5deg); }
     }
-    .flame-orb.blown {
+    .flame-light.blown {
       transform: scale(0);
       opacity: 0;
     }
 
-    /* Screen 3: Pre-Quiz Grand Announcement Banner */
-    .panda-banner-art {
-      font-size: 58px;
+    /* Screen 3: Pre-Quiz Grand Announcement */
+    .banner-panda-art {
+      font-size: 60px;
       margin-bottom: 12px;
       display: inline-block;
-      animation: heartBeat 1.8s infinite;
+      animation: heartbeat 1.8s infinite;
     }
-    @keyframes heartBeat {
+    @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
       15% { transform: scale(1.25); }
       30% { transform: scale(1); }
     }
-    .banner-title {
+    .banner-title-text {
       font-family: 'Playfair Display', serif;
       font-size: 24px;
       font-weight: 800;
@@ -301,11 +328,11 @@
       background: linear-gradient(135deg, var(--gold) 20%, #fff 80%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
-    /* Dynamic Quiz System Engine */
-    .progress-bar-track {
+    /* Screen 4: Dynamic Interactive Quiz Engine */
+    .track-line {
       width: 100%;
       height: 6px;
       background: rgba(255, 255, 255, 0.08);
@@ -313,19 +340,19 @@
       margin-bottom: 24px;
       overflow: hidden;
     }
-    .progress-bar-fill {
+    .fill-line {
       height: 100%;
       width: 50%;
       background: linear-gradient(90deg, var(--primary), var(--gold));
-      transition: width 0.4s ease;
+      transition: width 0.45s ease;
     }
-    .option-list {
+    .answers-col {
       display: flex;
       flex-direction: column;
       gap: 14px;
-      margin-top: 18px;
+      margin-top: 20px;
     }
-    .opt-btn {
+    .action-choice {
       background: rgba(255, 255, 255, 0.04);
       border: 1.5px solid rgba(255, 255, 255, 0.12);
       color: #fff;
@@ -340,35 +367,35 @@
       justify-content: center;
       gap: 8px;
     }
-    .opt-btn:active {
+    .action-choice:active {
       transform: scale(0.96);
       border-color: var(--primary);
     }
-    .shake {
-      animation: shakeFX 0.4s ease;
+    .shake-error {
+      animation: shakeAlert 0.4s ease;
     }
-    @keyframes shakeFX {
+    @keyframes shakeAlert {
       0%, 100% { transform: translateX(0); }
       20%, 60% { transform: translateX(-9px); }
       40%, 80% { transform: translateX(9px); }
     }
 
-    /* Final Stage: Grand Aesthetic Letter */
-    .royal-sheet {
+    /* Screen 6: Final Grand Aesthetic Letter */
+    .letter-parchment {
       background: #fcf9f2;
       color: #211c24;
       border-radius: 28px;
       padding: 30px 22px;
       text-align: left;
       position: relative;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
-      animation: unfoldLetter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      box-shadow: 0 30px 75px rgba(0, 0, 0, 0.9);
+      animation: unfoldLetter 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     @keyframes unfoldLetter {
-      from { transform: scale(0.88) rotate(-1.5deg); opacity: 0; }
+      from { transform: scale(0.85) rotate(-2deg); opacity: 0; }
       to { transform: scale(1) rotate(0deg); opacity: 1; }
     }
-    .royal-stamp {
+    .stamp-badge {
       position: absolute;
       top: 20px;
       right: 22px;
@@ -380,14 +407,14 @@
       color: var(--primary);
       text-transform: uppercase;
     }
-    .royal-heading {
+    .heading-parchment {
       font-family: 'Playfair Display', serif;
       font-size: 23px;
       font-weight: 800;
       color: #110d14;
       margin-bottom: 4px;
     }
-    .royal-date {
+    .date-tag {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 1.8px;
@@ -395,18 +422,18 @@
       text-transform: uppercase;
       margin-bottom: 22px;
     }
-    .royal-body {
+    .body-text {
       font-size: 14.5px;
       line-height: 1.85;
       color: #3b3440;
       white-space: pre-line;
       font-weight: 500;
     }
-    .mark-rose {
+    .highlight-rose {
       color: #d81159;
       font-weight: 700;
     }
-    .royal-sign {
+    .sign-parchment {
       margin-top: 26px;
       text-align: right;
       font-family: 'Playfair Display', serif;
@@ -419,32 +446,25 @@
 </head>
 <body>
 
-  <!-- Dynamic Cyber Glow Mesh -->
-  <div class="aurora-wrap">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
+  <!-- Dynamic Studio Aurora Mesh -->
+  <div class="studio-aurora">
+    <div class="light-blob blob-1"></div>
+    <div class="light-blob blob-2"></div>
   </div>
 
-  <!-- Interactive 3D Panda Companion -->
+  <!-- Interactive 3D Panda Mascot -->
   <div class="panda-companion" onclick="pokePanda()">
-    <div class="panda-bubble" id="pandaToast">Babu's Birthday! 🐼✨</div>
-    <!-- Clean Cute Panda SVG Mascot -->
+    <div class="panda-bubble" id="pandaBubble">Babu's Birthday! 🐼✨</div>
     <svg viewBox="0 0 100 100" width="100%" height="100%">
-      <!-- Ears -->
       <circle cx="28" cy="28" r="14" fill="#181528" />
       <circle cx="72" cy="28" r="14" fill="#181528" />
-      <!-- Head Base -->
       <circle cx="50" cy="54" r="38" fill="#ffffff" stroke="#181528" stroke-width="3" />
-      <!-- Eye Patches -->
       <ellipse cx="36" cy="52" rx="10" ry="13" fill="#181528" transform="rotate(-15 36 52)" />
       <ellipse cx="64" cy="52" rx="10" ry="13" fill="#181528" transform="rotate(15 64 52)" />
-      <!-- Eye Pupils -->
       <circle cx="37" cy="52" r="3" fill="#ffffff" />
       <circle cx="63" cy="52" r="3" fill="#ffffff" />
-      <!-- Nose & Mouth -->
       <ellipse cx="50" cy="64" rx="4" ry="3" fill="#181528" />
       <path d="M 46 68 Q 50 72 54 68" stroke="#181528" stroke-width="2" fill="none" stroke-linecap="round" />
-      <!-- Cheeks Blush -->
       <circle cx="28" cy="62" r="5" fill="#ff758f" opacity="0.6" />
       <circle cx="72" cy="62" r="5" fill="#ff758f" opacity="0.6" />
     </svg>
@@ -452,117 +472,115 @@
 
   <audio id="soundtrack" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-112199.mp3"></audio>
 
-  <div class="app-box">
+  <div class="viewport-box">
 
     <!-- Screen 1: Passcode Matrix -->
-    <div id="screenPin" class="cinema-panel active">
-      <div class="badge-chip">🔒 Security Check</div>
+    <div id="screenPin" class="studio-panel active anim-spring">
+      <div class="status-badge">🔒 Security Check</div>
       <h2>Identity Verification</h2>
-      <p class="sub-guide">Enter your birthday passcode (DDMM)</p>
+      <p class="guide-note">Enter your birthday passcode (DDMM)</p>
 
-      <div class="dots-flex">
-        <div class="dot-node" id="n0"></div>
-        <div class="dot-node" id="n1"></div>
-        <div class="dot-node" id="n2"></div>
-        <div class="dot-node" id="n3"></div>
+      <div class="nodes-row">
+        <div class="node-dot" id="n0"></div>
+        <div class="node-dot" id="n1"></div>
+        <div class="node-dot" id="n2"></div>
+        <div class="node-dot" id="n3"></div>
       </div>
 
-      <div class="key-matrix">
-        <div class="key-tile" onclick="dialDigit('1')">1</div>
-        <div class="key-tile" onclick="dialDigit('2')">2</div>
-        <div class="key-tile" onclick="dialDigit('3')">3</div>
-        <div class="key-tile" onclick="dialDigit('4')">4</div>
-        <div class="key-tile" onclick="dialDigit('5')">5</div>
-        <div class="key-tile" onclick="dialDigit('6')">6</div>
-        <div class="key-tile" onclick="dialDigit('7')">7</div>
-        <div class="key-tile" onclick="dialDigit('8')">8</div>
-        <div class="key-tile" onclick="dialDigit('9')">9</div>
-        <div class="key-tile" onclick="clearDial()">✕</div>
-        <div class="key-tile" onclick="dialDigit('0')">0</div>
-        <div class="key-tile" onclick="verifyDial()">✓</div>
+      <div class="key-grid">
+        <div class="grid-btn" onclick="dialDigit('1')">1</div>
+        <div class="grid-btn" onclick="dialDigit('2')">2</div>
+        <div class="grid-btn" onclick="dialDigit('3')">3</div>
+        <div class="grid-btn" onclick="dialDigit('4')">4</div>
+        <div class="grid-btn" onclick="dialDigit('5')">5</div>
+        <div class="grid-btn" onclick="dialDigit('6')">6</div>
+        <div class="grid-btn" onclick="dialDigit('7')">7</div>
+        <div class="grid-btn" onclick="dialDigit('8')">8</div>
+        <div class="grid-btn" onclick="dialDigit('9')">9</div>
+        <div class="grid-btn" onclick="clearDial()">✕</div>
+        <div class="grid-btn" onclick="dialDigit('0')">0</div>
+        <div class="grid-btn" onclick="verifyDial()">✓</div>
       </div>
-      <div class="status-toast" id="pinToast"></div>
+      <div class="toast-msg" id="pinToast"></div>
     </div>
 
-    <!-- Screen 2: Holographic Cake Ritual -->
-    <div id="screenCake" class="cinema-panel">
-      <div class="badge-chip">🎂 Stage 01</div>
+    <!-- Screen 2: Holographic Candle Cake -->
+    <div id="screenCake" class="studio-panel">
+      <div class="status-badge">🎂 Stage 01</div>
       <h2>Make A Silent Wish</h2>
-      <p class="sub-guide">Tap the flame to blow the candle</p>
+      <p class="guide-note">Tap the flame to blow the candle</p>
 
-      <div class="cake-center" onclick="blowFlame()">
-        <div class="stick">
-          <div class="flame-orb" id="candleFlame"></div>
+      <div class="cake-wrap" onclick="blowFlame()">
+        <div class="candle-rod">
+          <div class="flame-light" id="candleFlame"></div>
         </div>
-        <div class="cake-icing"></div>
-        <div class="cake-platter"></div>
-        <div class="status-toast succ" id="cakeHint" style="margin-top: 30px;">Tap The Flame ✨</div>
+        <div class="cake-cream-glaze"></div>
+        <div class="cake-base-dish"></div>
+        <div class="toast-msg succ" id="cakeHint" style="margin-top: 30px;">Tap The Flame ✨</div>
       </div>
     </div>
 
     <!-- Screen 3: Pre-Quiz Grand Announcement -->
-    <div id="screenPreQuiz" class="cinema-panel">
-      <div class="panda-banner-art">🐼❤️</div>
-      <div class="badge-chip">Special Edition</div>
-      <div class="banner-title">
+    <div id="screenPreQuiz" class="studio-panel">
+      <div class="banner-panda-art">🐼❤️</div>
+      <div class="status-badge">Special Edition</div>
+      <div class="banner-title-text">
         15 questions on 15th birthday for my BBB 🐼❤️
       </div>
-      <p class="sub-guide" style="font-size: 14px; color: #ffcbd7;">
+      <p class="guide-note" style="font-size: 14px; color: #ffcbd7;">
         Answer every question carefully. Only the true answers will unlock your secret letter!
       </p>
-      <button class="opt-btn" style="background: linear-gradient(135deg, var(--primary), #ff758f); border:none; margin: 20px auto 0; padding: 18px 34px;" onclick="startQuizSession()">
+      <button class="action-choice" style="background: linear-gradient(135deg, var(--primary), #ff758f); border:none; margin: 20px auto 0; padding: 18px 34px;" onclick="startQuizSession()">
         Start The Quiz 🚀✨
       </button>
     </div>
 
-    <!-- Screen 4: Dynamic Quiz Engine (Automated for any number of Qs) -->
-    <div id="screenQuiz" class="cinema-panel">
-      <div class="progress-bar-track">
-        <div class="progress-bar-fill" id="quizProgress"></div>
+    <!-- Screen 4: Unique Per-Question Cinematic Quiz Engine -->
+    <div id="screenQuiz" class="studio-panel">
+      <div class="track-line">
+        <div class="fill-line" id="quizProgress"></div>
       </div>
-      <div class="badge-chip" id="quizQuestionTag">Question 1/15</div>
+      <div class="status-badge" id="quizQuestionTag">Question 1/15</div>
       <h2 id="quizPromptTitle" style="min-height: 55px; font-size: 22px;">Loading...</h2>
 
-      <div class="option-list" id="quizOptionsContainer">
-        <!-- Buttons injected dynamically -->
-      </div>
-      <div class="status-toast" id="quizFeedback"></div>
+      <div class="answers-col" id="quizOptionsContainer"></div>
+      <div class="toast-msg" id="quizFeedback"></div>
     </div>
 
     <!-- Screen 5: Pre-Letter Transition -->
-    <div id="screenPreLetter" class="cinema-panel">
-      <div class="badge-chip">💌 Final Destination</div>
+    <div id="screenPreLetter" class="studio-panel">
+      <div class="status-badge">💌 Final Destination</div>
       <h2>You Did It, Babu! ❤️</h2>
-      <p class="sub-guide" style="font-size: 15px; color: var(--gold); line-height: 1.7; margin-top: 15px;">
+      <p class="guide-note" style="font-size: 15px; color: var(--gold); line-height: 1.7; margin-top: 15px;">
         I love you so much baby, and I hope you really enjoyed every bit of it! Unpacking your handwritten royal letter now...
       </p>
-      <button class="opt-btn" style="background: linear-gradient(135deg, var(--primary), #ff758f); border:none; margin: 20px auto 0; padding: 18px 30px;" onclick="revealRoyalLetter()">
+      <button class="action-choice" style="background: linear-gradient(135deg, var(--primary), #ff758f); border:none; margin: 20px auto 0; padding: 18px 30px;" onclick="revealRoyalLetter()">
         Open Sealed Letter 📜✨
       </button>
     </div>
 
     <!-- Screen 6: Final Grand Aesthetic Letter -->
-    <div id="screenLetter" class="cinema-panel" style="padding: 14px;">
-      <div class="royal-sheet">
-        <div class="royal-stamp">12.09 • SPECIAL</div>
-        <div class="royal-heading">Happy Birthday, Ishika ❤️</div>
-        <div class="royal-date">September 12 • Strictly Mine</div>
+    <div id="screenLetter" class="studio-panel" style="padding: 14px;">
+      <div class="letter-parchment">
+        <div class="stamp-badge">12.09 • SPECIAL</div>
+        <div class="heading-parchment">Happy Birthday, Ishika ❤️</div>
+        <div class="date-tag">September 12 • Strictly Mine</div>
 
-        <div class="royal-body">
+        <div class="body-text">
 Happy Birthday to the most irreplaceable person in my entire life! 🥺❤️
 
 Whatever is going on in my world, you are the only one who truly understands me without me needing to explain a single thing. That proposal night is forever locked in my heart, and words will never be enough to describe how precious you are to me 🔒✨.
 
 It’s only been 1 month today, but time will just fly by—kab 1 saal aur kab 10 saal honge pata bhi nahi chalega, and we’ll still be celebrating every milestone together just like this 🫂⏳.
 
-<span class="mark-rose">Just a reminder:</span> I am extremely possessive about you 🔪😭, and you are strictly restricted to me. Nobody even comes close to what we have, and no one can ever separate us 😼.
+<span class="highlight-rose">Just a reminder:</span> I am extremely possessive about you 🔪😭, and you are strictly restricted to me. Nobody even comes close to what we have, and no one can ever separate us 😼.
 
 Thank you for being my constant sanctuary and the absolute best part of my days.
 
 Happy Birthday once again meri Ishika 💋💘🧿✨
         </div>
 
-        <div class="royal-sign">
+        <div class="sign-parchment">
           Forever & Strictly Yours,<br>
           ~ Listener ❤️
         </div>
@@ -572,19 +590,19 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
   </div>
 
   <script>
-    /* Card Transition Director */
-    function jumpCard(currentId, targetId) {
+    /* Card Transition Router with Custom Dynamic Cinematic Animations */
+    function jumpCard(currentId, targetId, customAnimClass = 'anim-spring') {
       const fromEl = document.getElementById(currentId);
       const toEl = document.getElementById(targetId);
       fromEl.classList.remove('active');
       setTimeout(() => {
         fromEl.style.display = 'none';
+        toEl.className = 'studio-panel active ' + customAnimClass;
         toEl.style.display = 'block';
-        setTimeout(() => toEl.classList.add('active'), 25);
       }, 260);
     }
 
-    /* Screen 1: Passcode Logic */
+    /* Screen 1: Passcode Matrix */
     let pinBuffer = "";
     const rightPin = "1209";
 
@@ -600,7 +618,7 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
       renderDots();
       const toast = document.getElementById('pinToast');
       toast.innerText = "";
-      toast.className = "status-toast";
+      toast.className = "toast-msg";
     }
     function renderDots() {
       for (let i = 0; i < 4; i++) {
@@ -613,12 +631,12 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
       const toast = document.getElementById('pinToast');
       if (pinBuffer === rightPin) {
         document.getElementById('soundtrack').play().catch(() => {});
-        toast.className = "status-toast succ";
+        toast.className = "toast-msg succ";
         toast.innerText = "ACCESS GRANTED ✨";
         confetti({ particleCount: 50, spread: 50, origin: { y: 0.6 } });
-        setTimeout(() => jumpCard('screenPin', 'screenCake'), 500);
+        setTimeout(() => jumpCard('screenPin', 'screenCake', 'anim-zoom-burst'), 500);
       } else {
-        toast.className = "status-toast err";
+        toast.className = "toast-msg err";
         toast.innerText = "WRONG PIN! HINT: HER DATE";
         setTimeout(clearDial, 650);
       }
@@ -635,22 +653,24 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
         particleCount: 120,
         spread: 80,
         origin: { y: 0.6 },
-        colors: ['#ff3366', '#f4c430', '#ffffff']
+        colors: ['#ff2a6d', '#f4c430', '#ffffff']
       });
 
-      setTimeout(() => jumpCard('screenCake', 'screenPreQuiz'), 1200);
+      setTimeout(() => jumpCard('screenCake', 'screenPreQuiz', 'anim-slide-tilt'), 1200);
     }
 
-    /* Screen 3 to 4: Quiz Engine */
+    /* Screen 3: Start Dynamic Quiz Session */
     function startQuizSession() {
-      jumpCard('screenPreQuiz', 'screenQuiz');
+      jumpCard('screenPreQuiz', 'screenQuiz', 'anim-flip3d');
       loadQuestionIndex(0);
     }
 
-    /* Scalable Question Data Pool (Add remaining 13 here directly) */
+    /* Scalable Dynamic Questions Database with Unique Styles & Feedback */
     const quizDatabase = [
       {
         question: "Kya name h aapka?",
+        animation: "anim-flip3d", // 3D Hologram Flip
+        pandaEmoji: "💍",
         options: [
           { text: "Ishika Singh ?", correct: false, response: "Wrong choice bby 😤" },
           { text: "Ishika Gupta 😝", correct: true, response: "Absolutely right! 💍✨" }
@@ -658,6 +678,8 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
       },
       {
         question: "Aap kiski babu h?",
+        animation: "anim-slide-tilt", // Elastic Kinetic Tilt
+        pandaEmoji: "🔪",
         options: [
           { text: "Gharwalo ki", correct: false, response: "Wrong choice! Sirf listener ki babu ho tum 🔪😭" },
           { text: "Listener ki", correct: true, response: "Yess obv 😭❤️" }
@@ -670,21 +692,25 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
     function loadQuestionIndex(idx) {
       currentQ = idx;
       const data = quizDatabase[idx];
+      const quizPanel = document.getElementById('screenQuiz');
       const feedback = document.getElementById('quizFeedback');
       feedback.innerText = "";
 
-      // Update Tag & Progress
+      // Trigger question's custom AI animation
+      quizPanel.className = 'studio-panel active ' + data.animation;
+
+      // Update Tag & Progress bar smoothly
       document.getElementById('quizQuestionTag').innerText = `Question ${idx + 1}/${quizDatabase.length}`;
       document.getElementById('quizProgress').style.width = `${((idx + 1) / quizDatabase.length) * 100}%`;
       document.getElementById('quizPromptTitle').innerText = data.question;
 
-      // Invert or render options
+      // Generate buttons dynamically
       const container = document.getElementById('quizOptionsContainer');
       container.innerHTML = "";
 
       data.options.forEach(opt => {
         const btn = document.createElement('button');
-        btn.className = "opt-btn";
+        btn.className = "action-choice";
         btn.innerText = opt.text;
         btn.onclick = () => checkQuizSelection(btn, opt);
         container.appendChild(btn);
@@ -695,29 +721,33 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
       const feedback = document.getElementById('quizFeedback');
       
       if (optionData.correct) {
-        feedback.className = "status-toast succ";
+        feedback.className = "toast-msg succ";
         feedback.innerText = optionData.response;
 
+        // Mascot dynamic reaction
+        const pandaBubble = document.getElementById('pandaBubble');
+        pandaBubble.innerText = quizDatabase[currentQ].pandaEmoji + " " + optionData.response;
+
         confetti({
-          particleCount: 75,
+          particleCount: 80,
           spread: 60,
           origin: { y: 0.6 }
         });
 
-        // Advance to next or complete
+        // Advance with smooth delay
         setTimeout(() => {
           if (currentQ + 1 < quizDatabase.length) {
             loadQuestionIndex(currentQ + 1);
           } else {
-            jumpCard('screenQuiz', 'screenPreLetter');
+            jumpCard('screenQuiz', 'screenPreLetter', 'anim-zoom-burst');
           }
         }, 1100);
 
       } else {
-        btnEl.classList.add('shake');
-        feedback.className = "status-toast err";
+        btnEl.classList.add('shake-error');
+        feedback.className = "toast-msg err";
         feedback.innerText = optionData.response;
-        setTimeout(() => btnEl.classList.remove('shake'), 450);
+        setTimeout(() => btnEl.classList.remove('shake-error'), 450);
       }
     }
 
@@ -727,9 +757,9 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
         particleCount: 160,
         spread: 100,
         origin: { y: 0.5 },
-        colors: ['#ff3366', '#f4c430', '#ffffff']
+        colors: ['#ff2a6d', '#f4c430', '#ffffff']
       });
-      jumpCard('screenPreLetter', 'screenLetter');
+      jumpCard('screenPreLetter', 'screenLetter', 'anim-spring');
     }
 
     /* Interactive Panda Tap Reactions */
@@ -742,9 +772,9 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
     ];
     let pIdx = 0;
     function pokePanda() {
-      const toast = document.getElementById('pandaToast');
+      const bubble = document.getElementById('pandaBubble');
       pIdx = (pIdx + 1) % pandaQuotes.length;
-      toast.innerText = pandaQuotes[pIdx];
+      bubble.innerText = pandaQuotes[pIdx];
       confetti({
         particleCount: 20,
         spread: 45,
