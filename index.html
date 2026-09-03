@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>For My Maharani • 12.09 ✨</title>
+  <title>For My BBB 🐼 • 12.09</title>
   
-  <!-- Modern Libraries: Spline 3D Viewer, Confetti, Lucide Icons, Premium Fonts -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
+  <!-- Modern Libraries: Canvas Confetti & Google Luxury Fonts -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Sacramento&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary-pink: #ff5e8e;
-      --secondary-pink: #ff85a2;
-      --soft-glow: rgba(255, 110, 150, 0.4);
-      --glass-surface: rgba(255, 255, 255, 0.08);
-      --glass-border: rgba(255, 255, 255, 0.22);
+      --primary: #ff3366;
+      --primary-glow: rgba(255, 51, 102, 0.45);
+      --gold: #f4c430;
+      --gold-glow: rgba(244, 196, 48, 0.35);
+      --bg: #06050a;
+      --glass: rgba(18, 14, 28, 0.75);
+      --border: rgba(255, 255, 255, 0.14);
     }
 
     * {
@@ -28,7 +29,7 @@
     }
 
     body {
-      background: radial-gradient(circle at 50% 20%, #201128 0%, #0c0814 60%, #050409 100%);
+      background: var(--bg);
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -40,176 +41,165 @@
       position: relative;
     }
 
-    /* Ambient Pastel Glow Mesh */
-    .glow-orb {
+    /* Ambient Dynamic Glowing Mesh */
+    .aurora-wrap {
       position: fixed;
-      border-radius: 50%;
-      filter: blur(100px);
-      pointer-events: none;
+      inset: 0;
       z-index: 1;
-      opacity: 0.6;
-      animation: floatOrb 12s ease-in-out infinite alternate;
+      pointer-events: none;
+      overflow: hidden;
     }
-    .orb-pink {
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.55;
+      animation: floatOrb 14s infinite alternate ease-in-out;
+    }
+    .orb-1 {
       width: 320px;
       height: 320px;
-      background: radial-gradient(circle, #ff4071, transparent 70%);
-      top: -80px;
+      background: radial-gradient(circle, #ff2a6d, transparent 70%);
+      top: -60px;
       left: -80px;
     }
-    .orb-purple {
-      width: 360px;
-      height: 360px;
-      background: radial-gradient(circle, #9d4edd, transparent 70%);
-      bottom: -90px;
-      right: -90px;
-      animation-duration: 16s;
+    .orb-2 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, #8a2be2, transparent 70%);
+      bottom: -80px;
+      right: -80px;
+      animation-duration: 18s;
     }
     @keyframes floatOrb {
-      0% { transform: scale(1) translate(0, 0); }
-      100% { transform: scale(1.15) translate(40px, 40px); }
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 60px) scale(1.18); }
     }
 
-    /* Floating Cute Animated Avatar */
-    .avatar-companion {
+    /* Interactive Cute Panda Companion */
+    .panda-companion {
       position: fixed;
-      bottom: 24px;
+      bottom: 22px;
       right: 18px;
-      width: 78px;
-      height: 78px;
+      width: 76px;
+      height: 76px;
       z-index: 100;
       cursor: pointer;
-      animation: avatarBounce 3s ease-in-out infinite;
-      filter: drop-shadow(0 10px 25px rgba(255, 94, 142, 0.45));
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: pandaBounce 3s ease-in-out infinite;
+      filter: drop-shadow(0 12px 25px rgba(255, 51, 102, 0.45));
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .avatar-companion:hover, .avatar-companion:active {
-      transform: scale(1.18) rotate(6deg);
+    .panda-companion:active {
+      transform: scale(1.22) rotate(8deg);
     }
-    .avatar-bubble {
+    .panda-bubble {
       position: absolute;
       top: -38px;
       right: 0;
       background: rgba(255, 255, 255, 0.95);
-      color: #1a1a24;
+      color: #0b0914;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       padding: 5px 12px;
       border-radius: 14px;
       white-space: nowrap;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
       border-bottom-right-radius: 2px;
-      animation: bubblePulse 2.5s infinite ease-in-out;
     }
-    @keyframes avatarBounce {
+    @keyframes pandaBounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-    @keyframes bubblePulse {
-      0%, 100% { opacity: 0.9; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.05); }
+      50% { transform: translateY(-10px); }
     }
 
-    /* Main Modern Dynamic Glass Card */
-    .main-wrapper {
+    /* App Frame Container */
+    .app-box {
       width: 100%;
-      max-width: 430px;
+      max-width: 420px;
       position: relative;
       z-index: 10;
     }
 
-    .super-card {
-      background: var(--glass-surface);
-      backdrop-filter: blur(45px) saturate(200%);
-      -webkit-backdrop-filter: blur(45px) saturate(200%);
-      border: 1.5px solid var(--glass-border);
-      border-radius: 38px;
+    .cinema-panel {
+      background: var(--glass);
+      backdrop-filter: blur(40px) saturate(180%);
+      -webkit-backdrop-filter: blur(40px) saturate(180%);
+      border: 1.5px solid var(--border);
+      border-radius: 36px;
       padding: 34px 24px;
       text-align: center;
-      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.35);
+      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.3);
       display: none;
-      animation: cardSpring 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: springEntry 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       position: relative;
-      overflow: hidden;
     }
-    .super-card.active { display: block; }
-    @keyframes cardSpring {
-      from { opacity: 0; transform: scale(0.92) translateY(14px); }
+    .cinema-panel.active { display: block; }
+    @keyframes springEntry {
+      from { opacity: 0; transform: scale(0.92) translateY(16px); }
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .cute-tag {
+    .badge-chip {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: #ffd2e0;
-      background: rgba(255, 94, 142, 0.16);
-      border: 1px solid rgba(255, 94, 142, 0.35);
+      color: var(--gold);
+      background: rgba(244, 196, 48, 0.12);
+      border: 1px solid rgba(244, 196, 48, 0.3);
       padding: 7px 16px;
       border-radius: 999px;
       margin-bottom: 22px;
-    }
-    .heart-pulse {
-      animation: heartBeat 1.4s infinite;
-      display: inline-block;
-    }
-    @keyframes heartBeat {
-      0%, 100% { transform: scale(1); }
-      15% { transform: scale(1.3); }
-      30% { transform: scale(1); }
-      45% { transform: scale(1.2); }
     }
 
     h2 {
       font-family: 'Playfair Display', serif;
       font-size: 26px;
       font-weight: 800;
-      background: linear-gradient(135deg, #ffffff 40%, #ffcad8);
+      background: linear-gradient(135deg, #fff 40%, #ffcbd7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 8px;
     }
-    p.instruction {
+    p.sub-guide {
       font-size: 13.5px;
-      color: #b3acc2;
+      color: #9d99ad;
       line-height: 1.5;
       margin-bottom: 26px;
     }
 
     /* Screen 1: Passcode Matrix */
-    .dots-strip {
+    .dots-flex {
       display: flex;
       justify-content: center;
       gap: 16px;
       margin-bottom: 28px;
     }
-    .pin-circle {
+    .dot-node {
       width: 15px;
       height: 15px;
       border-radius: 50%;
       border: 2px solid rgba(255, 255, 255, 0.25);
       transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .pin-circle.lit {
-      background: linear-gradient(135deg, #ff5e8e, #ffa07a);
-      border-color: #ff5e8e;
-      box-shadow: 0 0 18px rgba(255, 94, 142, 0.8);
+    .dot-node.lit {
+      background: linear-gradient(135deg, var(--primary), #ff85a2);
+      border-color: var(--primary);
+      box-shadow: 0 0 18px var(--primary);
       transform: scale(1.25);
     }
-    .dial-grid {
+    .key-matrix {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       max-width: 270px;
       margin: 0 auto;
     }
-    .key-unit {
+    .key-tile {
       aspect-ratio: 1.25;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 20px;
       color: #fff;
@@ -221,64 +211,125 @@
       cursor: pointer;
       transition: all 0.18s;
     }
-    .key-unit:active {
-      background: linear-gradient(135deg, #ff5e8e, #ff85a2);
+    .key-tile:active {
+      background: linear-gradient(135deg, var(--primary), #ff758f);
       transform: scale(0.92);
-      box-shadow: 0 0 25px rgba(255, 94, 142, 0.6);
+      box-shadow: 0 0 25px var(--primary-glow);
     }
-    .err-toast {
-      color: #ff5964;
-      font-size: 12.5px;
-      min-height: 18px;
+    .status-toast {
+      font-size: 13px;
+      min-height: 20px;
       margin-top: 15px;
-      font-weight: 600;
-    }
-
-    /* Screen 2: Spline 3D Interactive Model Canvas */
-    .spline-box {
-      width: 100%;
-      height: 250px;
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    spline-viewer {
-      width: 100%;
-      height: 100%;
-    }
-    .blow-cta {
-      background: linear-gradient(135deg, #ff5e8e, #ff85a2);
-      border: none;
-      color: #fff;
-      font-size: 15px;
       font-weight: 700;
-      padding: 16px 28px;
-      border-radius: 22px;
-      cursor: pointer;
-      box-shadow: 0 12px 30px rgba(255, 94, 142, 0.45);
-      transition: all 0.25s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      letter-spacing: 0.5px;
+      transition: color 0.3s;
     }
-    .blow-cta:active {
-      transform: scale(0.95);
-      box-shadow: 0 5px 15px rgba(255, 94, 142, 0.3);
-    }
+    .status-toast.err { color: #ff4d6d; }
+    .status-toast.succ { color: #52b788; }
 
-    /* Quiz Flow */
-    .quiz-options {
+    /* Screen 2: Hologram Candle Cake */
+    .cake-center {
+      margin: 25px auto 35px;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
-      gap: 13px;
-      margin-top: 20px;
+      align-items: center;
     }
-    .quiz-btn {
-      background: rgba(255, 255, 255, 0.05);
+    .cake-platter {
+      width: 170px;
+      height: 80px;
+      background: linear-gradient(180deg, #ff2a6d 0%, #70062a 100%);
+      border-radius: 50% / 30%;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(255, 42, 109, 0.4);
+    }
+    .cake-icing {
+      width: 170px;
+      height: 46px;
+      background: linear-gradient(180deg, #ffffff 0%, #ffd6e0 100%);
+      border-radius: 50% / 40%;
+      position: absolute;
+      top: -18px;
+    }
+    .stick {
+      width: 12px;
+      height: 48px;
+      background: repeating-linear-gradient(45deg, var(--gold), var(--gold) 6px, #fff 6px, #fff 12px);
+      border-radius: 6px;
+      position: absolute;
+      top: -50px;
+      left: calc(50% - 6px);
+    }
+    .flame-orb {
+      width: 16px;
+      height: 26px;
+      background: radial-gradient(circle, #fff, #ffd600 50%, #ff4500 100%);
+      border-radius: 50% 50% 20% 20% / 60% 60% 40% 40%;
+      position: absolute;
+      top: -26px;
+      left: -2px;
+      box-shadow: 0 0 20px #ffd600, 0 0 45px #ff5722;
+      animation: flickerAnim 0.12s infinite alternate ease-in-out;
+      transition: all 0.35s ease;
+    }
+    @keyframes flickerAnim {
+      0% { transform: scale(1) rotate(-1.5deg); }
+      100% { transform: scale(1.08) rotate(1.5deg); }
+    }
+    .flame-orb.blown {
+      transform: scale(0);
+      opacity: 0;
+    }
+
+    /* Screen 3: Pre-Quiz Grand Announcement Banner */
+    .panda-banner-art {
+      font-size: 58px;
+      margin-bottom: 12px;
+      display: inline-block;
+      animation: heartBeat 1.8s infinite;
+    }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.25); }
+      30% { transform: scale(1); }
+    }
+    .banner-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.4;
+      background: linear-gradient(135deg, var(--gold) 20%, #fff 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    /* Dynamic Quiz System Engine */
+    .progress-bar-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 50%;
+      background: linear-gradient(90deg, var(--primary), var(--gold));
+      transition: width 0.4s ease;
+    }
+    .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .opt-btn {
+      background: rgba(255, 255, 255, 0.04);
       border: 1.5px solid rgba(255, 255, 255, 0.12);
       color: #fff;
-      font-size: 15px;
+      font-size: 15.5px;
       font-weight: 600;
       padding: 18px 20px;
       border-radius: 22px;
@@ -289,280 +340,231 @@
       justify-content: center;
       gap: 8px;
     }
-    .quiz-btn:active {
+    .opt-btn:active {
       transform: scale(0.96);
-      background: rgba(255, 94, 142, 0.2);
-      border-color: #ff5e8e;
+      border-color: var(--primary);
     }
-    .shake-target {
-      animation: shakeMotion 0.4s ease;
+    .shake {
+      animation: shakeFX 0.4s ease;
     }
-    @keyframes shakeMotion {
+    @keyframes shakeFX {
       0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-8px); }
-      40%, 80% { transform: translateX(8px); }
+      20%, 60% { transform: translateX(-9px); }
+      40%, 80% { transform: translateX(9px); }
     }
 
-    /* Screen 5 & 6: Aesthetic 3D Folding Letter Experience */
-    .envelope-teaser {
-      width: 140px;
-      height: 100px;
-      margin: 20px auto;
-      position: relative;
-      cursor: pointer;
-      animation: envelopeFloat 3s ease-in-out infinite;
-    }
-    @keyframes envelopeFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-    .envelope-body {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #ffd9e2, #ffb3c6);
-      border-radius: 16px;
-      box-shadow: 0 15px 35px rgba(255, 94, 142, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
-    }
-
-    /* Final Letter Styled as Real Handcrafted Aesthetic Note */
-    .letter-parchment {
-      background: #fdfbf7;
-      color: #2b2528;
-      border-radius: 26px;
+    /* Final Stage: Grand Aesthetic Letter */
+    .royal-sheet {
+      background: #fcf9f2;
+      color: #211c24;
+      border-radius: 28px;
       padding: 30px 22px;
       text-align: left;
       position: relative;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
-      overflow: hidden;
-      animation: unrollSheet 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+      animation: unfoldLetter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    @keyframes unrollSheet {
-      from { transform: scale(0.85) rotate(-2deg); opacity: 0; }
+    @keyframes unfoldLetter {
+      from { transform: scale(0.88) rotate(-1.5deg); opacity: 0; }
       to { transform: scale(1) rotate(0deg); opacity: 1; }
     }
-    .letter-parchment::before {
-      content: '';
+    .royal-stamp {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, #ff5e8e, #ffb3c6, #9d4edd);
-    }
-    .aesthetic-stamp {
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      width: 48px;
-      height: 54px;
-      border: 1.5px dashed #ff5e8e;
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      top: 20px;
+      right: 22px;
+      padding: 5px 10px;
+      border: 1.5px dashed var(--primary);
+      border-radius: 8px;
       font-size: 10px;
       font-weight: 800;
-      color: #ff5e8e;
-      background: #fff;
+      color: var(--primary);
+      text-transform: uppercase;
     }
-    .letter-salutation {
+    .royal-heading {
       font-family: 'Playfair Display', serif;
-      font-size: 22px;
+      font-size: 23px;
       font-weight: 800;
-      color: #1a1618;
+      color: #110d14;
       margin-bottom: 4px;
     }
-    .letter-date-tag {
+    .royal-date {
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 1.5px;
-      color: #ff5e8e;
+      letter-spacing: 1.8px;
+      color: var(--primary);
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
-    .letter-words {
+    .royal-body {
       font-size: 14.5px;
       line-height: 1.85;
-      color: #4a4247;
+      color: #3b3440;
       white-space: pre-line;
       font-weight: 500;
     }
-    .highlight-pink {
+    .mark-rose {
       color: #d81159;
       font-weight: 700;
     }
-    .letter-handwriting {
+    .royal-sign {
       margin-top: 26px;
       text-align: right;
-      font-family: 'Sacramento', cursive;
-      font-size: 32px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
       color: #d81159;
-      line-height: 1;
+      font-size: 17px;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Glow -->
-  <div class="glow-orb orb-pink"></div>
-  <div class="glow-orb orb-purple"></div>
+  <!-- Dynamic Cyber Glow Mesh -->
+  <div class="aurora-wrap">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
 
-  <!-- Cute Interactive Companion Mascot -->
-  <div class="avatar-companion" onclick="pokeAvatar()">
-    <div class="avatar-bubble" id="avatarMsg">Hiee Birthday Girl! ✨</div>
-    <!-- Cute 3D Style Baby/Princess SVG Avatar -->
+  <!-- Interactive 3D Panda Companion -->
+  <div class="panda-companion" onclick="pokePanda()">
+    <div class="panda-bubble" id="pandaToast">Babu's Birthday! 🐼✨</div>
+    <!-- Clean Cute Panda SVG Mascot -->
     <svg viewBox="0 0 100 100" width="100%" height="100%">
-      <circle cx="50" cy="50" r="46" fill="#ffd1dc" />
-      <!-- Tiara -->
-      <polygon points="36,25 50,15 64,25 58,32 42,32" fill="#ffd700" stroke="#f39c12" stroke-width="2" />
-      <circle cx="50" cy="15" r="3" fill="#ff4d6d" />
-      <!-- Hair -->
-      <path d="M 22 50 C 22 25 78 25 78 50 C 78 40 22 40 22 50" fill="#4a2e1b" />
-      <!-- Eyes -->
-      <circle cx="38" cy="48" r="5" fill="#2d1e18" />
-      <circle cx="62" cy="48" r="5" fill="#2d1e18" />
-      <circle cx="40" cy="46" r="1.8" fill="#fff" />
-      <circle cx="64" cy="46" r="1.8" fill="#fff" />
-      <!-- Blush -->
-      <ellipse cx="32" cy="55" rx="5" ry="3" fill="#ff758f" opacity="0.6" />
-      <ellipse cx="68" cy="55" rx="5" ry="3" fill="#ff758f" opacity="0.6" />
-      <!-- Smile -->
-      <path d="M 45 57 Q 50 63 55 57" stroke="#2d1e18" stroke-width="2.5" fill="transparent" stroke-linecap="round" />
+      <!-- Ears -->
+      <circle cx="28" cy="28" r="14" fill="#181528" />
+      <circle cx="72" cy="28" r="14" fill="#181528" />
+      <!-- Head Base -->
+      <circle cx="50" cy="54" r="38" fill="#ffffff" stroke="#181528" stroke-width="3" />
+      <!-- Eye Patches -->
+      <ellipse cx="36" cy="52" rx="10" ry="13" fill="#181528" transform="rotate(-15 36 52)" />
+      <ellipse cx="64" cy="52" rx="10" ry="13" fill="#181528" transform="rotate(15 64 52)" />
+      <!-- Eye Pupils -->
+      <circle cx="37" cy="52" r="3" fill="#ffffff" />
+      <circle cx="63" cy="52" r="3" fill="#ffffff" />
+      <!-- Nose & Mouth -->
+      <ellipse cx="50" cy="64" rx="4" ry="3" fill="#181528" />
+      <path d="M 46 68 Q 50 72 54 68" stroke="#181528" stroke-width="2" fill="none" stroke-linecap="round" />
+      <!-- Cheeks Blush -->
+      <circle cx="28" cy="62" r="5" fill="#ff758f" opacity="0.6" />
+      <circle cx="72" cy="62" r="5" fill="#ff758f" opacity="0.6" />
     </svg>
   </div>
 
-  <audio id="bgSong" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-112199.mp3"></audio>
+  <audio id="soundtrack" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-112199.mp3"></audio>
 
-  <div class="main-wrapper">
+  <div class="app-box">
 
-    <!-- Screen 1: Passcode -->
-    <div id="cardPin" class="super-card active">
-      <div class="cute-tag"><span class="heart-pulse">💖</span> Secret Gateway</div>
-      <h2>Identity Check!</h2>
-      <p class="instruction">Enter the special date passcode to begin (DDMM)</p>
+    <!-- Screen 1: Passcode Matrix -->
+    <div id="screenPin" class="cinema-panel active">
+      <div class="badge-chip">🔒 Security Check</div>
+      <h2>Identity Verification</h2>
+      <p class="sub-guide">Enter your birthday passcode (DDMM)</p>
 
-      <div class="dots-strip">
-        <div class="pin-circle" id="d0"></div>
-        <div class="pin-circle" id="d1"></div>
-        <div class="pin-circle" id="d2"></div>
-        <div class="pin-circle" id="d3"></div>
+      <div class="dots-flex">
+        <div class="dot-node" id="n0"></div>
+        <div class="dot-node" id="n1"></div>
+        <div class="dot-node" id="n2"></div>
+        <div class="dot-node" id="n3"></div>
       </div>
 
-      <div class="dial-grid">
-        <div class="key-unit" onclick="pressDigit('1')">1</div>
-        <div class="key-unit" onclick="pressDigit('2')">2</div>
-        <div class="key-unit" onclick="pressDigit('3')">3</div>
-        <div class="key-unit" onclick="pressDigit('4')">4</div>
-        <div class="key-unit" onclick="pressDigit('5')">5</div>
-        <div class="key-unit" onclick="pressDigit('6')">6</div>
-        <div class="key-unit" onclick="pressDigit('7')">7</div>
-        <div class="key-unit" onclick="pressDigit('8')">8</div>
-        <div class="key-unit" onclick="pressDigit('9')">9</div>
-        <div class="key-unit" onclick="clearAll()">✕</div>
-        <div class="key-unit" onclick="pressDigit('0')">0</div>
-        <div class="key-unit" onclick="validatePin()">✓</div>
+      <div class="key-matrix">
+        <div class="key-tile" onclick="dialDigit('1')">1</div>
+        <div class="key-tile" onclick="dialDigit('2')">2</div>
+        <div class="key-tile" onclick="dialDigit('3')">3</div>
+        <div class="key-tile" onclick="dialDigit('4')">4</div>
+        <div class="key-tile" onclick="dialDigit('5')">5</div>
+        <div class="key-tile" onclick="dialDigit('6')">6</div>
+        <div class="key-tile" onclick="dialDigit('7')">7</div>
+        <div class="key-tile" onclick="dialDigit('8')">8</div>
+        <div class="key-tile" onclick="dialDigit('9')">9</div>
+        <div class="key-tile" onclick="clearDial()">✕</div>
+        <div class="key-tile" onclick="dialDigit('0')">0</div>
+        <div class="key-tile" onclick="verifyDial()">✓</div>
       </div>
-      <div class="err-toast" id="pinToast"></div>
+      <div class="status-toast" id="pinToast"></div>
     </div>
 
-    <!-- Screen 2: 3D Spline Interactive Cake Scene -->
-    <div id="cardCake" class="super-card">
-      <div class="cute-tag"><span class="heart-pulse">🎂</span> Birthday Ritual</div>
-      <h2>Make A Sweet Wish ✨</h2>
-      <p class="instruction">Interact with your 3D cake & blow the candle</p>
+    <!-- Screen 2: Holographic Cake Ritual -->
+    <div id="screenCake" class="cinema-panel">
+      <div class="badge-chip">🎂 Stage 01</div>
+      <h2>Make A Silent Wish</h2>
+      <p class="sub-guide">Tap the flame to blow the candle</p>
 
-      <div class="spline-box">
-        <spline-viewer url="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"></spline-viewer>
-      </div>
-
-      <button class="blow-cta" onclick="finishRitual()">
-        Blow The Candle ✨💨
-      </button>
-    </div>
-
-    <!-- Screen 3: Interactive Question 1 -->
-    <div id="cardQ1" class="super-card">
-      <div class="cute-tag">Round 01 • Mood Check 🧸</div>
-      <h2>How are you? ❤️</h2>
-      <p class="instruction">Acha yeh batao... aaj kya hai?</p>
-
-      <div class="quiz-options">
-        <button class="quiz-btn" onclick="wrongClick(this, 'Arre sirf maharani nahi! Socho socho 😤')">
-          Maharani ka birthday 👑
-        </button>
-        <button class="quiz-btn" onclick="goToQ2()">
-          Aak ki maharani ka birthday 🧿✨
-        </button>
-      </div>
-      <div class="err-toast" id="q1Toast"></div>
-    </div>
-
-    <!-- Screen 4: Interactive Question 2 -->
-    <div id="cardQ2" class="super-card">
-      <div class="cute-tag">Round 02 • Strict Question 🔪</div>
-      <h2>Sach Sach Batana!</h2>
-      <p class="instruction">Aap meri babu ho ya nahi? 😼</p>
-
-      <div class="quiz-options">
-        <button class="quiz-btn" onclick="wrongClick(this, 'Wrong answer! Sirf aur sirf meri babu ho tum 🔪😭')">
-          Nahi 🙅🏻‍♀️
-        </button>
-        <button class="quiz-btn" onclick="goToPreLetter()">
-          Haan, strictly aur humesha sirf aapki babu ❤️🥺
-        </button>
-      </div>
-      <div class="err-toast" id="q2Toast"></div>
-    </div>
-
-    <!-- Screen 5: Love Note Envelope Reveal -->
-    <div id="cardPreLetter" class="super-card">
-      <div class="cute-tag"><span class="heart-pulse">💌</span> Strictly Mine</div>
-      <h2>I Love You So Much Baby ❤️</h2>
-      <p class="instruction" style="color: #ffcad8; font-size: 15px; margin-top: 14px;">
-        I really hope you loved your surprises so far! Now, tap to unpack your handwritten aesthetic letter...
-      </p>
-
-      <div class="envelope-teaser" onclick="openParchment()">
-        <div class="envelope-body">💌</div>
-      </div>
-
-      <button class="blow-cta" style="margin-top: 10px;" onclick="openParchment()">
-        Read Handwritten Letter 📜✨
-      </button>
-    </div>
-
-    <!-- Screen 6: Authentic Aesthetic Letter -->
-    <div id="cardLetter" class="super-card" style="padding: 16px;">
-      <div class="letter-parchment">
-        <div class="aesthetic-stamp">
-          <span>12.09</span>
-          <span>SPECIAL</span>
+      <div class="cake-center" onclick="blowFlame()">
+        <div class="stick">
+          <div class="flame-orb" id="candleFlame"></div>
         </div>
+        <div class="cake-icing"></div>
+        <div class="cake-platter"></div>
+        <div class="status-toast succ" id="cakeHint" style="margin-top: 30px;">Tap The Flame ✨</div>
+      </div>
+    </div>
 
-        <div class="letter-salutation">Happy Birthday, Ishika ❤️</div>
-        <div class="letter-date-tag">September 12 • Exclusively Mine</div>
+    <!-- Screen 3: Pre-Quiz Grand Announcement -->
+    <div id="screenPreQuiz" class="cinema-panel">
+      <div class="panda-banner-art">🐼❤️</div>
+      <div class="badge-chip">Special Edition</div>
+      <div class="banner-title">
+        15 questions on 15th birthday for my BBB 🐼❤️
+      </div>
+      <p class="sub-guide" style="font-size: 14px; color: #ffcbd7;">
+        Answer every question carefully. Only the true answers will unlock your secret letter!
+      </p>
+      <button class="opt-btn" style="background: linear-gradient(135deg, var(--primary), #ff758f); border:none; margin: 20px auto 0; padding: 18px 34px;" onclick="startQuizSession()">
+        Start The Quiz 🚀✨
+      </button>
+    </div>
 
-        <div class="letter-words">
+    <!-- Screen 4: Dynamic Quiz Engine (Automated for any number of Qs) -->
+    <div id="screenQuiz" class="cinema-panel">
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="quizProgress"></div>
+      </div>
+      <div class="badge-chip" id="quizQuestionTag">Question 1/15</div>
+      <h2 id="quizPromptTitle" style="min-height: 55px; font-size: 22px;">Loading...</h2>
+
+      <div class="option-list" id="quizOptionsContainer">
+        <!-- Buttons injected dynamically -->
+      </div>
+      <div class="status-toast" id="quizFeedback"></div>
+    </div>
+
+    <!-- Screen 5: Pre-Letter Transition -->
+    <div id="screenPreLetter" class="cinema-panel">
+      <div class="badge-chip">💌 Final Destination</div>
+      <h2>You Did It, Babu! ❤️</h2>
+      <p class="sub-guide" style="font-size: 15px; color: var(--gold); line-height: 1.7; margin-top: 15px;">
+        I love you so much baby, and I hope you really enjoyed every bit of it! Unpacking your handwritten royal letter now...
+      </p>
+      <button class="opt-btn" style="background: linear-gradient(135deg, var(--primary), #ff758f); border:none; margin: 20px auto 0; padding: 18px 30px;" onclick="revealRoyalLetter()">
+        Open Sealed Letter 📜✨
+      </button>
+    </div>
+
+    <!-- Screen 6: Final Grand Aesthetic Letter -->
+    <div id="screenLetter" class="cinema-panel" style="padding: 14px;">
+      <div class="royal-sheet">
+        <div class="royal-stamp">12.09 • SPECIAL</div>
+        <div class="royal-heading">Happy Birthday, Ishika ❤️</div>
+        <div class="royal-date">September 12 • Strictly Mine</div>
+
+        <div class="royal-body">
 Happy Birthday to the most irreplaceable person in my entire life! 🥺❤️
 
 Whatever is going on in my world, you are the only one who truly understands me without me needing to explain a single thing. That proposal night is forever locked in my heart, and words will never be enough to describe how precious you are to me 🔒✨.
 
 It’s only been 1 month today, but time will just fly by—kab 1 saal aur kab 10 saal honge pata bhi nahi chalega, and we’ll still be celebrating every milestone together just like this 🫂⏳.
 
-<span class="highlight-pink">Just a reminder:</span> I am extremely possessive about you 🔪😭, and you are strictly restricted to me. Nobody even comes close to what we have, and no one can ever separate us 😼.
+<span class="mark-rose">Just a reminder:</span> I am extremely possessive about you 🔪😭, and you are strictly restricted to me. Nobody even comes close to what we have, and no one can ever separate us 😼.
 
 Thank you for being my constant sanctuary and the absolute best part of my days.
 
 Happy Birthday once again meri Ishika 💋💘🧿✨
         </div>
 
-        <div class="letter-handwriting">
-          Forever Yours, Aak ❤️
+        <div class="royal-sign">
+          Forever & Strictly Yours,<br>
+          ~ Listener ❤️
         </div>
       </div>
     </div>
@@ -570,120 +572,183 @@ Happy Birthday once again meri Ishika 💋💘🧿✨
   </div>
 
   <script>
-    /* Card Transitions */
-    function navCard(fromId, toId) {
-      const fromEl = document.getElementById(fromId);
-      const toEl = document.getElementById(toId);
+    /* Card Transition Director */
+    function jumpCard(currentId, targetId) {
+      const fromEl = document.getElementById(currentId);
+      const toEl = document.getElementById(targetId);
       fromEl.classList.remove('active');
       setTimeout(() => {
         fromEl.style.display = 'none';
         toEl.style.display = 'block';
         setTimeout(() => toEl.classList.add('active'), 25);
-      }, 300);
+      }, 260);
     }
 
     /* Screen 1: Passcode Logic */
-    let pinCode = "";
-    const passTarget = "1209";
+    let pinBuffer = "";
+    const rightPin = "1209";
 
-    function pressDigit(num) {
-      if (pinCode.length < 4) {
-        pinCode += num;
-        refreshDots();
+    function dialDigit(num) {
+      if (pinBuffer.length < 4) {
+        pinBuffer += num;
+        renderDots();
       }
-      if (pinCode.length === 4) validatePin();
+      if (pinBuffer.length === 4) verifyDial();
     }
-    function clearAll() {
-      pinCode = "";
-      refreshDots();
-      document.getElementById('pinToast').innerText = "";
+    function clearDial() {
+      pinBuffer = "";
+      renderDots();
+      const toast = document.getElementById('pinToast');
+      toast.innerText = "";
+      toast.className = "status-toast";
     }
-    function refreshDots() {
+    function renderDots() {
       for (let i = 0; i < 4; i++) {
-        const d = document.getElementById('d' + i);
-        if (i < pinCode.length) d.classList.add('lit');
-        else d.classList.remove('lit');
+        const dot = document.getElementById('n' + i);
+        if (i < pinBuffer.length) dot.classList.add('lit');
+        else dot.classList.remove('lit');
       }
     }
-    function validatePin() {
-      if (pinCode === passTarget) {
-        document.getElementById('bgSong').play().catch(() => {});
-        triggerHearts();
-        navCard('cardPin', 'cardCake');
+    function verifyDial() {
+      const toast = document.getElementById('pinToast');
+      if (pinBuffer === rightPin) {
+        document.getElementById('soundtrack').play().catch(() => {});
+        toast.className = "status-toast succ";
+        toast.innerText = "ACCESS GRANTED ✨";
+        confetti({ particleCount: 50, spread: 50, origin: { y: 0.6 } });
+        setTimeout(() => jumpCard('screenPin', 'screenCake'), 500);
       } else {
-        document.getElementById('pinToast').innerText = "WRONG CODE! HINT: HER SPECIAL DATE (DDMM)";
-        setTimeout(clearAll, 600);
+        toast.className = "status-toast err";
+        toast.innerText = "WRONG PIN! HINT: HER DATE";
+        setTimeout(clearDial, 650);
       }
     }
 
-    /* Screen 2: Cake Blow */
-    function finishRitual() {
+    /* Screen 2: Candle Flame */
+    function blowFlame() {
+      const fl = document.getElementById('candleFlame');
+      if (fl.classList.contains('blown')) return;
+      fl.classList.add('blown');
+      document.getElementById('cakeHint').innerText = "WISH LOCKED INTO HEAVEN ✨";
+
       confetti({
-        particleCount: 140,
-        spread: 90,
+        particleCount: 120,
+        spread: 80,
         origin: { y: 0.6 },
-        colors: ['#ff5e8e', '#ffd2e0', '#ffd700', '#ffffff']
+        colors: ['#ff3366', '#f4c430', '#ffffff']
       });
-      setTimeout(() => {
-        navCard('cardCake', 'cardQ1');
-      }, 1000);
+
+      setTimeout(() => jumpCard('screenCake', 'screenPreQuiz'), 1200);
     }
 
-    /* Quiz Interactions */
-    function wrongClick(btn, warning) {
-      btn.classList.add('shake-target');
-      const box = btn.closest('.super-card').querySelector('.err-toast');
-      box.innerText = warning;
-      setTimeout(() => btn.classList.remove('shake-target'), 400);
-    }
-    function goToQ2() {
-      triggerHearts();
-      navCard('cardQ1', 'cardQ2');
-    }
-    function goToPreLetter() {
-      confetti({
-        particleCount: 90,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-      navCard('cardQ2', 'cardPreLetter');
-    }
-    function openParchment() {
-      confetti({
-        particleCount: 180,
-        spread: 120,
-        origin: { y: 0.5 },
-        colors: ['#ff5e8e', '#ff85a2', '#ffd700', '#fff']
-      });
-      navCard('cardPreLetter', 'cardLetter');
+    /* Screen 3 to 4: Quiz Engine */
+    function startQuizSession() {
+      jumpCard('screenPreQuiz', 'screenQuiz');
+      loadQuestionIndex(0);
     }
 
-    /* Avatar Mascot Interactions */
-    const cuteReplies = [
-      "Aap meri babu ho! 🥺",
-      "Happy Birthday Ishika! 🎂",
-      "Aak loves you the most! 🧿",
-      "Cutest Maharani ever 👑",
-      "Always strictly his! 🔒✨"
+    /* Scalable Question Data Pool (Add remaining 13 here directly) */
+    const quizDatabase = [
+      {
+        question: "Kya name h aapka?",
+        options: [
+          { text: "Ishika Singh ?", correct: false, response: "Wrong choice bby 😤" },
+          { text: "Ishika Gupta 😝", correct: true, response: "Absolutely right! 💍✨" }
+        ]
+      },
+      {
+        question: "Aap kiski babu h?",
+        options: [
+          { text: "Gharwalo ki", correct: false, response: "Wrong choice! Sirf listener ki babu ho tum 🔪😭" },
+          { text: "Listener ki", correct: true, response: "Yess obv 😭❤️" }
+        ]
+      }
     ];
-    let replyIndex = 0;
-    function pokeAvatar() {
-      const bubble = document.getElementById('avatarMsg');
-      bubble.innerText = cuteReplies[replyIndex];
-      replyIndex = (replyIndex + 1) % cuteReplies.length;
-      confetti({
-        particleCount: 25,
-        spread: 40,
-        origin: { x: 0.9, y: 0.9 }
+
+    let currentQ = 0;
+
+    function loadQuestionIndex(idx) {
+      currentQ = idx;
+      const data = quizDatabase[idx];
+      const feedback = document.getElementById('quizFeedback');
+      feedback.innerText = "";
+
+      // Update Tag & Progress
+      document.getElementById('quizQuestionTag').innerText = `Question ${idx + 1}/${quizDatabase.length}`;
+      document.getElementById('quizProgress').style.width = `${((idx + 1) / quizDatabase.length) * 100}%`;
+      document.getElementById('quizPromptTitle').innerText = data.question;
+
+      // Invert or render options
+      const container = document.getElementById('quizOptionsContainer');
+      container.innerHTML = "";
+
+      data.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = "opt-btn";
+        btn.innerText = opt.text;
+        btn.onclick = () => checkQuizSelection(btn, opt);
+        container.appendChild(btn);
       });
     }
 
-    function triggerHearts() {
+    function checkQuizSelection(btnEl, optionData) {
+      const feedback = document.getElementById('quizFeedback');
+      
+      if (optionData.correct) {
+        feedback.className = "status-toast succ";
+        feedback.innerText = optionData.response;
+
+        confetti({
+          particleCount: 75,
+          spread: 60,
+          origin: { y: 0.6 }
+        });
+
+        // Advance to next or complete
+        setTimeout(() => {
+          if (currentQ + 1 < quizDatabase.length) {
+            loadQuestionIndex(currentQ + 1);
+          } else {
+            jumpCard('screenQuiz', 'screenPreLetter');
+          }
+        }, 1100);
+
+      } else {
+        btnEl.classList.add('shake');
+        feedback.className = "status-toast err";
+        feedback.innerText = optionData.response;
+        setTimeout(() => btnEl.classList.remove('shake'), 450);
+      }
+    }
+
+    /* Screen 5 to 6: Letter Reveal */
+    function revealRoyalLetter() {
       confetti({
-        particleCount: 40,
-        scalar: 1.2,
-        spread: 60,
-        origin: { y: 0.6 }
+        particleCount: 160,
+        spread: 100,
+        origin: { y: 0.5 },
+        colors: ['#ff3366', '#f4c430', '#ffffff']
+      });
+      jumpCard('screenPreLetter', 'screenLetter');
+    }
+
+    /* Interactive Panda Tap Reactions */
+    const pandaQuotes = [
+      "Babu's Birthday! 🐼✨",
+      "Ishika Gupta ji 😝💍",
+      "Strictly Listener's Babu 🔒",
+      "15th Birthday Milestone 🎂",
+      "Sabse Pyaari BBB 💖"
+    ];
+    let pIdx = 0;
+    function pokePanda() {
+      const toast = document.getElementById('pandaToast');
+      pIdx = (pIdx + 1) % pandaQuotes.length;
+      toast.innerText = pandaQuotes[pIdx];
+      confetti({
+        particleCount: 20,
+        spread: 45,
+        origin: { x: 0.88, y: 0.9 }
       });
     }
   </script>
